@@ -99,6 +99,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9001601934252909661}
+  - component: {fileID: 1086782183016703215}
   - component: {fileID: 2612746126303726012}
   - component: {fileID: -8200076686487164073}
   - component: {fileID: -8261710014331415859}
@@ -126,6 +127,20 @@ Transform:
   - {fileID: 5572763778105855582}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1086782183016703215
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7841204320835765149}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 27c5343a343a41f4086b8ba7b89a65c9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BaseEnemy
+  enemyMovement: {fileID: 2612746126303726012}
+  enemyShooter: {fileID: 4144332207627770670}
 --- !u!114 &2612746126303726012
 MonoBehaviour:
   m_ObjectHideFlags: 0

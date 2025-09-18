@@ -10,7 +10,7 @@ public class EnemyShooter : MonoBehaviour
 
     [SerializeField] private EnemyMovement enemyMovement;
 
-    private void Update()
+    public void UpdateShooting()
     {
         if (canShoot)
         {

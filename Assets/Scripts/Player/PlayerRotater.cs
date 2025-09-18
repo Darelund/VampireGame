@@ -3,11 +3,11 @@ using UnityEngine;
 public class PlayerRotater : MonoBehaviour
 {
     // Update is called once per frame
-    void Update()
-    {
-        RotatePlayer();
-    }
-    private void RotatePlayer()
+    //void Update()
+    //{
+    //    RotatePlayer();
+    //}
+    public void Rotate()
     {
         var mouseInWorldSpace = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         mouseInWorldSpace.z = 0; //Ignore depth

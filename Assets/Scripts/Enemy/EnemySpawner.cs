@@ -10,11 +10,9 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] private float spawnRadius;
     [SerializeField] private GameObject spawnObject;
 
+    [SerializeField] private EnemyManager enemyManager;
 
-    void Start()
-    {
-       // InvokeRepeating("Spawn", startSpawn, spawnInterval);
-    }
+
     private void Update()
     {
         if(startSpawn > Time.time) return;
@@ -31,14 +29,15 @@ public class EnemySpawner : MonoBehaviour
             currentSpawnTime = 0;
         }
     }
-    private void Spawn()
-    {
-        Instantiate(spawnObject, GetSpawnPosition(), Quaternion.identity);
-    }
+    //private void Spawn()
+    //{
+    //    Instantiate(spawnObject, GetSpawnPosition(), Quaternion.identity);
+    //}
    
     private IEnumerator SpawnCoroutine()
     {
-        Instantiate(spawnObject, GetSpawnPosition(), Quaternion.identity);
+        var newEnemy = Instantiate(spawnObject, GetSpawnPosition(), Quaternion.identity);
+        enemyManager.GetEnemiesList.Add(newEnemy);
         yield return new WaitForSeconds(spawnInterval);
     }
     private Vector2 GetSpawnPosition()

@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class GameManager : StateMachine
 {
+   // [SerializeField] private PlayerMovement
     private static GameManager instance;
     public static GameManager Instance
     {
@@ -19,7 +20,7 @@ public class GameManager : StateMachine
     }
     private void Start()
     {
-       // SwitchState<PlayingState>();
+        SwitchState<PlayingState>();
     }
     private void Update()
     {

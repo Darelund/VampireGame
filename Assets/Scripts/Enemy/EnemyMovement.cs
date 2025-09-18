@@ -9,7 +9,7 @@ public class EnemyMovement : MonoBehaviour
     {
         target = GameObject.Find("Player");
     }
-    void Update()
+    public void UpdateMovement()
     {
         Move();
         LookAtPlayer();

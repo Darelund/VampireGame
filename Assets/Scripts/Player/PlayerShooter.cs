@@ -16,7 +16,7 @@ public class PlayerShooter : MonoBehaviour
 
 
 
-    private void Update()
+    public void UpdateShooting()
     {
         if (canShoot)
         {

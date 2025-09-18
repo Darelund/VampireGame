@@ -33,17 +33,32 @@ public class FeedbackText : MonoBehaviour
         //yield return SizeUp();
         //yield return SizeDown();
 
-        yield return SizeChange(text.fontSize * 2, (fs1, fs2) => fs1 < fs2, Time.deltaTime * 1.5f);
-        yield return SizeChange(text.fontSize / 2, (fs1, fs2) => fs1 > fs2, -(Time.deltaTime * 2f));
+        //yield return TextSizeChange(text.fontSize * 2, (fs1, fs2) => fs1 < fs2, 1.5f);
+        //yield return TextSizeChange(text.fontSize / 2, (fs1, fs2) => fs1 > fs2, -10f);
+
+        Vector2 doubleScale = new Vector2(text.transform.localScale.x * 2, text.transform.localScale.y * 2);
+        yield return TextScaleChange(doubleScale, (fs1, fs2) => fs1.sqrMagnitude < fs2.sqrMagnitude, 1.5f);
+
+        Vector2 halfScale = new Vector2(text.transform.localScale.x * 0.5f, text.transform.localScale.y * 0.5f);
+        yield return TextScaleChange(halfScale, (fs1, fs2) => fs1.sqrMagnitude > fs2.sqrMagnitude, 10f);
 
         Destroy(gameObject);
     }
-    private IEnumerator SizeChange(float trgSize, Func<float, float, bool> comparison, float speed)
+    private IEnumerator TextScaleChange(Vector2 trgLocalScale, Func<Vector2, Vector2, bool> comparison, float speed)
+    {
+        Vector2 targetScale = trgLocalScale;
+        while (comparison.Invoke(text.transform.localScale, targetScale))
+        {
+            text.transform.localScale = Vector2.MoveTowards(text.transform.localScale, targetScale, Time.deltaTime * speed);
+            yield return null;
+        }
+    }
+    private IEnumerator TextSizeChange(float trgSize, Func<float, float, bool> comparison, float speed)
     {
         float targetSize = trgSize;
         while (comparison.Invoke(text.fontSize, targetSize))
         {
-            text.fontSize += speed;
+            text.fontSize += Time.deltaTime * speed;
             yield return null;
         }
     }

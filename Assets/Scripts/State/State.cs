@@ -10,6 +10,10 @@ public class State : MonoBehaviour
     {
 
     }
+    public virtual void FixedUpdateState()
+    {
+
+    }
 
     public virtual void ExitState()
     {

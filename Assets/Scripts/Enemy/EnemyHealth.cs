@@ -37,6 +37,7 @@ public class EnemyHealth : Damageable
     {
         var upgradePoint = Instantiate(UpgradePointObj, transform.position, Quaternion.identity).GetComponent<UpgradePoint>();
         upgradePoint.InitializeUpgradePoint(33);
+        EnemyManager.Instance.GetEnemiesList.Remove(gameObject);
         Destroy(gameObject);
     }
 

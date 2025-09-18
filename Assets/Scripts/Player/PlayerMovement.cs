@@ -27,21 +27,21 @@ public class PlayerMovement : MonoBehaviour
 
     [SerializeField] private bool isSprinting;
 
-    private void Update()
+    public void UpdateMovement()
     {
         GetInput();
-       // Move();
+        Move();
     }
-    private void FixedUpdate()
+    public void FixedUpdateMovement()
     {
         MoveWithRigidbody();
     }
     private void MoveWithRigidbody()
     {
-        if(Rigidbody2D.linearVelocity.magnitude < 10)
-        {
-            Rigidbody2D.AddForce(dir * CurrentSpeed);
-        }
+        //if(Rigidbody2D.linearVelocity.magnitude < 10)
+        //{
+        //    Rigidbody2D.AddForce(dir * CurrentSpeed);
+        //}
     }
     private void GetInput()
     {

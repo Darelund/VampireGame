@@ -12,6 +12,7 @@ public class StateMachine : MonoBehaviour
         {
             if(state.GetType() == typeof(aState))
             {
+                if(currentState != null)
                 currentState.ExitState();
                 currentState = state;
                 currentState.EnterState();
