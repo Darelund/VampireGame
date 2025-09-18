@@ -14,4 +14,10 @@ public class PlayerHealth : Damageable
         base.TakeDamage(dmg);
         healthBar.UpdateHealthBar(currentHealth, maxHealth);
     }
+    public override void Died()
+    {
+        //Died :(
+        GameManager.Instance.SwitchState<GameOverState>();
+        Destroy(transform.gameObject);
+    }
 }

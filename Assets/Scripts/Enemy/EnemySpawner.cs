@@ -13,7 +13,7 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] private EnemyManager enemyManager;
 
 
-    private void Update()
+    public void UpdateSpawner()
     {
         if(startSpawn > Time.time) return;
 
