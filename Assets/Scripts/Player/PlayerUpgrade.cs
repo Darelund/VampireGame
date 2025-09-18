@@ -8,20 +8,19 @@ public class PlayerUpgrade : MonoBehaviour
     public int nextLevel = 0;
     [SerializeField] private List<Level> levelUps;
 
-    [SerializeField] public TMP_Text lvlUpText;
     private void OnTriggerEnter2D(Collider2D collision)
     {
         var upgradePoint = collision.GetComponent<UpgradePoint>();
         if (upgradePoint != null)
         {
-            currentExperiencePoints += upgradePoint.points;
+            currentExperiencePoints += upgradePoint.GetPoints();
+            VisualManager.Instance.SpawnText($"{upgradePoint.GetPoints()}+", transform.position, TextType.Normal);
             Destroy(upgradePoint.gameObject);
         }
-        if(currentExperiencePoints >= levelUps[nextLevel].ExperiencePoints)
+        if(currentExperiencePoints >= levelUps[nextLevel + 1].ExperiencePoints)
         {
             nextLevel++;
-            lvlUpText.text = $"LVL: {nextLevel} REACHED!";
-            lvlUpText.gameObject.SetActive(true);
+            VisualManager.Instance.SpawnText($"LVL: {nextLevel} REACHED!", Vector2.zero, TextType.LvlUp);
         }
     }
 }

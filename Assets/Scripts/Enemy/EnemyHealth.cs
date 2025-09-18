@@ -11,6 +11,7 @@ public class EnemyHealth : Damageable
     public override void TakeDamage(float dmg)
     {
         base.TakeDamage(dmg);
+        VisualManager.Instance.SpawnText($"{dmg}+", transform.position, TextType.Normal, Color.darkRed);
         HealthColor healthColor;
         string healthName = "";
         if (currentHealth >= maxHealth/2)
@@ -25,16 +26,17 @@ public class EnemyHealth : Damageable
         {
             healthName = "Low";
         }
-        Debug.Log(healthName);
+        //Debug.Log(healthName);
         //healthColor = healthColors.Where(hc => hc.Name == healthName) as HealthColor;
         healthColor = healthColors.Find(hc => hc.Name == healthName);
-        Debug.Log(healthColor == null);
-        Debug.Log(innerObj.GetComponent<SpriteRenderer>() == null);
+        //Debug.Log(healthColor == null);
+        //Debug.Log(innerObj.GetComponent<SpriteRenderer>() == null);
         innerObj.GetComponent<SpriteRenderer>().color = healthColor.Color;
     }
     public override void Died()
     {
-        Instantiate(UpgradePointObj, transform.position, Quaternion.identity);
+        var upgradePoint = Instantiate(UpgradePointObj, transform.position, Quaternion.identity).GetComponent<UpgradePoint>();
+        upgradePoint.InitializeUpgradePoint(33);
         Destroy(gameObject);
     }
 

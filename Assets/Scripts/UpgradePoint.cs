@@ -2,5 +2,8 @@ using UnityEngine;
 
 public class UpgradePoint : MonoBehaviour
 {
-    public int points;
+    private int points;
+
+    public int GetPoints() => points;
+    public void InitializeUpgradePoint(int points) => this.points = points;
 }

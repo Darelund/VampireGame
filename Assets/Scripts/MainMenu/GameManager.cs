@@ -4,7 +4,6 @@ using UnityEngine;
 public class GameManager : StateMachine
 {
     private static GameManager instance;
-
     public static GameManager Instance
     {
         get
@@ -26,8 +25,4 @@ public class GameManager : StateMachine
     {
         UpdateStateMachine();
     }
-    //private static void Initialize()
-    //{
-    //    instance = 
-    //}
 }

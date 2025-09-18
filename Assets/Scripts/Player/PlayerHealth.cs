@@ -3,16 +3,15 @@ using UnityEngine.UI;
 
 public class PlayerHealth : Damageable
 {
-    [SerializeField] private Slider slider;
+    [SerializeField] private HealthBar healthBar;
 
     private void Start()
     {
-        slider.value = currentHealth / maxHealth;
+        healthBar.UpdateHealthBar(currentHealth, maxHealth);
     }
-
     public override void TakeDamage(float dmg)
     {
         base.TakeDamage(dmg);
-        slider.value = currentHealth / maxHealth;
+        healthBar.UpdateHealthBar(currentHealth, maxHealth);
     }
 }
