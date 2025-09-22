@@ -141,6 +141,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::BaseEnemy
   enemyMovement: {fileID: 2612746126303726012}
   enemyShooter: {fileID: 4144332207627770670}
+  enemyHealth: {fileID: -8261710014331415859}
 --- !u!114 &2612746126303726012
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -220,6 +221,7 @@ MonoBehaviour:
       serializedVersion: 2
       rgba: 4284309531
   UpgradePointObj: {fileID: 8268766501368687321, guid: d9b4dd97851e9364c8b7627b79f1ed36, type: 3}
+  visuals: {fileID: 6234876991281349335}
 --- !u!114 &4144332207627770670
 MonoBehaviour:
   m_ObjectHideFlags: 0

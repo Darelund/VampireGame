@@ -53,6 +53,7 @@ public class PlayerShooter : MonoBehaviour
 
         var projSpeed = 30;
         projectileObj.GetComponent<Projectile>().Init(normalizedDir, projSpeed);
+        ProjectileManager.Instance.GetProjectileList.Add(projectileObj);
     }
     private void CreateAttackParticles()
     {

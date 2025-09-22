@@ -42,8 +42,8 @@ public class EnemySpawner : MonoBehaviour
     }
     private Vector2 GetSpawnPosition()
     {
-        float XPos = Random.Range(0, spawnRadius + 1);
-        float YPos = Random.Range(0, spawnRadius + 1);
+        float XPos = Random.Range(-30, 30);
+        float YPos = Random.Range(-30, 30);
         return new Vector2(XPos, YPos);
     }
 }

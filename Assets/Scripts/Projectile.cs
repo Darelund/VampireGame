@@ -1,18 +1,32 @@
 using UnityEngine;
 
-public class Projectile : MonoBehaviour
+public class Projectile : Damageable
 {
     [SerializeField] private Rigidbody2D rb;
-    [SerializeField] private float damage;
+    //[SerializeField] private float damage;
     [SerializeField] private GameObject destroyedParticle;
-    private void Awake()
+
+    [SerializeField] private Vector2 dir;
+    [SerializeField] private float speed;
+
+    [SerializeField] private GameObject visuals;
+
+    protected override void Awake()
     {
+        base.Awake();
         rb = GetComponent<Rigidbody2D>();
     }
     public void Init(Vector2 dir, float speed)
     {
+        this.dir = dir;
+        this.speed = speed;
+
         rb.AddForce(dir * speed, ForceMode2D.Impulse);
         RightRotation(dir);
+    }
+    public void UpdateProjectile()
+    {
+        transform.position += (Vector3)(dir * speed * Time.deltaTime);
     }
     private void RightRotation(Vector2 dir)
     {
@@ -23,17 +37,18 @@ public class Projectile : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D collision)
     {
         var damageableObject = collision.collider.GetComponent<Damageable>();
-        if (damageableObject != null)
+        if (damageableObject != null && damageableObject.GetComponent<Projectile>() == null)
         {
-            damageableObject.TakeDamage(damage);
-            Debug.Log($"Did dmg: {damage}");
-            Debug.Log($"target has: {damageableObject.GetCurrentHealth} hp left");
+            //Todo: Come up with different projectiles, with different damage
+            int dmg = Random.Range(15, 30);
+            damageableObject.TakeDamage(dmg);
         }
         DestroyItself();
     }
     private void DestroyItself()
     {
-        Destroy(transform.gameObject);
+        currentHealth = 0;
+        visuals.SetActive(false);
         Instantiate(destroyedParticle, transform.position, Quaternion.identity);
     }
 }

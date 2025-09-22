@@ -31,6 +31,15 @@ public class EnemyManager : MonoBehaviour
         for (int i = 0; i < enemies.Count; i++)
         {
             enemies[i].GetComponent<BaseEnemy>().UpdateEnemy();
+            //TODO: Remove enemies here
+            if(!enemies[i].GetComponent<EnemyHealth>().IsAlive)
+            {
+              
+                Destroy(enemies[i].gameObject);
+                enemies.RemoveAt(i);
+                i--;
+                //Maybe use a Queue or stack?
+            }
         }
     }
 }

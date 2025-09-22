@@ -6,10 +6,15 @@ public abstract class Damageable : MonoBehaviour
     [SerializeField] protected float maxHealth;
 
     public float GetCurrentHealth => currentHealth;
+    public void SetmaxHealth(float maxHealth)
+    {
+        this.maxHealth = maxHealth;
+        currentHealth = maxHealth;
+    }
 
     public bool IsAlive => currentHealth > 0;
 
-    protected void Awake()
+    protected virtual void Awake()
     {
         currentHealth = maxHealth;
     }
@@ -22,7 +27,7 @@ public abstract class Damageable : MonoBehaviour
     public virtual void Died()
     {
         //Died :(
-        Destroy(transform.gameObject);
+        //Destroy(transform.gameObject); 
     }
     public virtual void RecieveHealth(float hp)
     {

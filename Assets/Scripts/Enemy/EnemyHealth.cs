@@ -7,6 +7,8 @@ public class EnemyHealth : Damageable
     [SerializeField] private GameObject innerObj;
     [SerializeField] private List<HealthColor> healthColors;
     [SerializeField] private GameObject UpgradePointObj;
+    [SerializeField] private GameObject visuals;
+
 
     public override void TakeDamage(float dmg)
     {
@@ -37,8 +39,7 @@ public class EnemyHealth : Damageable
     {
         var upgradePoint = Instantiate(UpgradePointObj, transform.position, Quaternion.identity).GetComponent<UpgradePoint>();
         upgradePoint.InitializeUpgradePoint(33);
-        EnemyManager.Instance.GetEnemiesList.Remove(gameObject);
-        Destroy(gameObject);
+        visuals.SetActive(false);
     }
 
 }

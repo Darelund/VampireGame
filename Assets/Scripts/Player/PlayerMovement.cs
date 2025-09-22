@@ -20,6 +20,9 @@ public class PlayerMovement : MonoBehaviour
             return currentSpeed;
         }
     }
+    public void ChangeMoveSpeed(float newSpeed) => moveSpeed = newSpeed;
+    public void ChangeSprintSpeed(float newSprintSpeed) => sprintSpeed = newSprintSpeed;
+
 
     private Vector2 dir;
     private float hor;

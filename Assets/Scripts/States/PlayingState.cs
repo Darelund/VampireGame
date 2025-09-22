@@ -5,6 +5,7 @@ public class PlayingState : State
     [SerializeField] private PlayerController controller;
     [SerializeField] private EnemyManager enemyManager;
     [SerializeField] private EnemySpawner enemySpawner;
+    [SerializeField] private ProjectileManager projectileManager;
     public override void UpdateState()
     {
         base.UpdateState();
@@ -12,6 +13,7 @@ public class PlayingState : State
 
         controller.UpdatePlayer();
         enemyManager.UpdateAllEnemies();
+        projectileManager.UpdateAllProjectiles();
 
         if (Input.GetKeyUp(KeyCode.Space))
         {
@@ -21,6 +23,5 @@ public class PlayingState : State
     public override void FixedUpdateState()
     {
         base.FixedUpdateState();
-
     }
 }
