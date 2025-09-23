@@ -10,8 +10,8 @@ public class ChangeAbilityUpgrade : Upgrade
     {
         base.Awake();
         playerUpgrade = GameObject.FindAnyObjectByType<PlayerUpgrade>();
-    }
 
+    }
 
 
     public override void ActivateAbility()
@@ -44,6 +44,9 @@ public class ChangeAbilityUpgrade : Upgrade
             playerController.GetPlayerHealth.SetmaxHealth((float)playerUpgrade.abilityUpgrades[_upgrade].Item2);
         }
         GameManager.Instance.SwitchState<PlayingState>();
+
+
+        
     }
 }
 //public enum UpgradeType

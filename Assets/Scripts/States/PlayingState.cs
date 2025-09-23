@@ -6,12 +6,14 @@ public class PlayingState : State
     [SerializeField] private EnemyManager enemyManager;
     [SerializeField] private EnemySpawner enemySpawner;
     [SerializeField] private ProjectileManager projectileManager;
+
     public override void UpdateState()
     {
         base.UpdateState();
         enemySpawner.UpdateSpawner();
 
         controller.UpdatePlayer();
+
         enemyManager.UpdateAllEnemies();
         projectileManager.UpdateAllProjectiles();
 
@@ -23,5 +25,6 @@ public class PlayingState : State
     public override void FixedUpdateState()
     {
         base.FixedUpdateState();
-    }
+    }   
+
 }

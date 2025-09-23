@@ -6,7 +6,7 @@ public abstract class Damageable : MonoBehaviour
     [SerializeField] protected float maxHealth;
 
     public float GetCurrentHealth => currentHealth;
-    public void SetmaxHealth(float maxHealth)
+    public virtual void SetmaxHealth(float maxHealth)
     {
         this.maxHealth = maxHealth;
         currentHealth = maxHealth;

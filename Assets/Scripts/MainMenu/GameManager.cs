@@ -1,9 +1,23 @@
+using System;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class GameManager : StateMachine
+public class GameManager : StateMachine, ISaveable
 {
-   // [SerializeField] private PlayerMovement
+    // [SerializeField] private PlayerMovement
+    private int _enemiesKilled;
+    public int GetEnemiesKilled
+    {
+        get => _enemiesKilled;
+    }
+
+    public void IncreaseEnemyKilledScoreByOne()
+    {
+        _enemiesKilled++;
+    }
+
+
+
     private static GameManager instance;
     public static GameManager Instance
     {
@@ -25,5 +39,15 @@ public class GameManager : StateMachine
     private void Update()
     {
         UpdateStateMachine();
+
+        
+    }
+
+    public void Save(Score score)
+    {
+        score.EnemiesKilled = _enemiesKilled;
+
+        TimeSpan time = TimeSpan.FromSeconds(Time.time);
+        score.Time = new PlayedTime(time.Hours, time.Minutes, time.Seconds);
     }
 }

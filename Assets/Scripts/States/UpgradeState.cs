@@ -20,9 +20,9 @@ public class UpgradeState : State
     }
     private void CreateUpgradeObjects()
     {
-        for (int i = 0; playerUpgrade.levelUps[playerUpgrade.currentLevel].Upgrades.Count > i; i++)
+        for (int i = 0; playerUpgrade.levelUps[playerUpgrade.GetCurrentLevel].Upgrades.Count > i; i++)
         {
-            var upgradeSO = playerUpgrade.levelUps[playerUpgrade.currentLevel].Upgrades[i];
+            var upgradeSO = playerUpgrade.levelUps[playerUpgrade.GetCurrentLevel].Upgrades[i];
             GameObject upgradeGameObject = null;
             if (upgradeSO.AbilityType == AbilityType.AddAbility)
             {

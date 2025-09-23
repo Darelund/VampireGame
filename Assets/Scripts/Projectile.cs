@@ -1,5 +1,10 @@
 using UnityEngine;
 
+public enum ProjectileOwner
+{
+    Player,
+    NonPlayer
+}
 public class Projectile : Damageable
 {
     [SerializeField] private Rigidbody2D rb;
@@ -10,6 +15,8 @@ public class Projectile : Damageable
     [SerializeField] private float speed;
 
     [SerializeField] private GameObject visuals;
+
+    public ProjectileOwner owner;
 
     protected override void Awake()
     {

@@ -1,38 +1,35 @@
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerUpgrade : MonoBehaviour
 {
-    public int currentExperiencePoints;
-    public int currentLevel = 0;
+    [SerializeField] private int currentExperiencePoints;
+    private int totalExperiencePoints;
+    [SerializeField] private int currentLevel = 0;
     [SerializeField] public List<Level> levelUps;
-    //[SerializeField] private GameObject AddAbilityGameObject;
-    //[SerializeField] private GameObject ChangeAbilityGameObject;
+
+    [SerializeField] private Slider slider;
+    [SerializeField] private TMP_Text currentLevelText;
+
+    private void UpdateUpgradeBar(float curr, float max)
+    {
+        slider.value = curr / max;
+        currentLevelText.text = $"LVL:{currentLevel}";
+    }
+
+    public int GetTotalExperiencePoints => totalExperiencePoints;
+    public int GetCurrentLevel => currentLevel;
 
 
-    
     public Dictionary<string, (string, object)> abilityUpgrades;
 
     private void Awake()
     {
-        CreateAbilitiesForLevels();
         CreateAbilityUpgrades();
-    }
-    private void CreateAbilitiesForLevels()
-    {
-        //levelUps = new List<Level>()
-        //{
-        //    new Level(0, new List<Upgrade>()), //Garbage zero level, maybe I give the player the choice so choose an upgrade at the start?
-        //    new Level(50, new List<Upgrade>()
-        //    {
-        //        new AddAbilityUpgrade()
-        //    }
-        //    ),
-        //    new Level(150, new List<Upgrade>()),
-        //    new Level(300, new List<Upgrade>()),
-        //    new Level(500, new List<Upgrade>())
-        //};
+
+        UpdateUpgradeBar(currentExperiencePoints, levelUps[currentLevel + 1].ExperiencePoints);
     }
     private void CreateAbilityUpgrades()
     {
@@ -62,9 +59,12 @@ public class PlayerUpgrade : MonoBehaviour
         if(currentExperiencePoints >= levelUps[currentLevel + 1].ExperiencePoints)
         {
             currentLevel++;
+            totalExperiencePoints += currentExperiencePoints;
+            currentExperiencePoints = 0; //We want the slider to go back to zero. I am not sure if we should reset it to 0. We probably want it to keep its experience points
             VisualManager.Instance.SpawnText($"LVL: {currentLevel} REACHED!", Vector2.zero, TextType.LvlUp, Color.darkGoldenRod);
             GameManager.Instance.SwitchState<UpgradeState>();
         }
+        UpdateUpgradeBar(currentExperiencePoints, levelUps[currentLevel + 1].ExperiencePoints);
     }
     
 }

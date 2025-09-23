@@ -9,6 +9,11 @@ public class PlayerHealth : Damageable
     {
         healthBar.UpdateHealthBar(currentHealth, maxHealth);
     }
+    public override void SetmaxHealth(float maxHealth)
+    {
+        base.SetmaxHealth(maxHealth);
+        healthBar.UpdateHealthBar(currentHealth, maxHealth);
+    }
     public override void TakeDamage(float dmg)
     {
         base.TakeDamage(dmg);
