@@ -2,19 +2,19 @@ using UnityEngine;
 
 public class PlayerRotater : MonoBehaviour
 {
-    // Update is called once per frame
-    //void Update()
-    //{
-    //    RotatePlayer();
-    //}
+    //[SerializeField] private Transform visuals;
     public void Rotate()
     {
         var mouseInWorldSpace = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        mouseInWorldSpace.z = 0; //Ignore depth
+       // mouseInWorldSpace.z = 0; 
         var dir = (mouseInWorldSpace - transform.position);
-        var normalizedDir = dir.normalized;
+       // var normalizedDir = dir.normalized;
 
         var angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
-        transform.rotation = Quaternion.Euler(0, 0, angle);
+        transform.rotation = Quaternion.Euler(56.06f, 0, angle - 90);
+
+        //visuals.localRotation = Quaternion.Euler(0, 90, -45);
+
+        //transform.LookAt(mouseInWorldSpace);
     }
 }

@@ -11,7 +11,7 @@ public class Score
     public int Waves;
     public int Level;
     public int EnemiesKilled;
-    //public PlayedTime Time;
+    public PlayedTime Time;
 
     public Score(int rank, string name, int exp, int waves, int level, int enemiesKilled, PlayedTime time)
     {
