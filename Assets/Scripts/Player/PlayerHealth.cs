@@ -23,6 +23,6 @@ public class PlayerHealth : Damageable
     {
         //Died :(
         GameManager.Instance.SwitchState<GameOverState>();
-        Destroy(transform.gameObject);
+        transform.GetChild(0).gameObject.SetActive(false);
     }
 }

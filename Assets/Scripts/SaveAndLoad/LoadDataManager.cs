@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using UnityEditor;
 using UnityEngine;
 
 public class LoadDataManager : MonoBehaviour
@@ -18,7 +19,7 @@ public class LoadDataManager : MonoBehaviour
             return instance;
         }
     }
-    public Score score = new Score();
+    public GameData gameData;
 
     private IFileSaver _fileSaver;
     private List<ISaveable> saveableElements = new List<ISaveable>();
@@ -29,30 +30,34 @@ public class LoadDataManager : MonoBehaviour
             Destroy(gameObject);
 
         instance = this;
-        DontDestroyOnLoad(gameObject);
         _fileSaver = new JsonSaver();
         saveableElements = GameObject.FindObjectsByType<MonoBehaviour>(FindObjectsInactive.Exclude, FindObjectsSortMode.None).OfType<ISaveable>().ToList();
+        gameData = new GameData();
+        LoadGameData();
     }
     private void Update()
     {
         if(Input.GetKeyDown(KeyCode.C))
         {
-            SaveScore();
+            SaveGameData();
         }
     }
-    public void SaveScore()
+    public void SaveGameData()
     {
-        
+        //gameData.scores.Push(new Score());
+
         foreach (var element in saveableElements)
         {
-            element.Save(score);
+            element.Save(gameData);
         }
-        //score.Name = "Bob"; //On player
-        //score.Level = 1; // On Player Upgrade
-        //score.Waves = 1; // On EnemySpawner
-        //score.Time = new PlayedTime(0, 5, 46); //On GameManager
-        //score.EnemiesKilled = 4; //On GameManager
-        //score.ExperiencePoints = 55; // On Player Upgrade
-        _fileSaver.Save(score);
+
+        _fileSaver.Save(gameData);
+    }
+    public void LoadGameData()
+    {
+        gameData = _fileSaver.Load();
+        //gameData.scores.Add(new Score(1, "Bob", 1, 1, 0, 1, new PlayedTime(0, 0, 1)));
+        //gameData.scores.Add(new Score(3, "Diva", 9999, 99, 9, 999, new PlayedTime(0, 10, 0)));
+        //gameData.scores.Add(new Score(2, "Jesse", 546, 7, 2, 119, new PlayedTime(0, 0, 1)));
     }
 }

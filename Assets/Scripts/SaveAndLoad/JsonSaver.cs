@@ -23,12 +23,12 @@ public class JsonSaver : IFileSaver
         }
     }
 
-    public void Save(Score score)
+    public void Save(GameData gameData)
     {
         Debug.Log(FullPath);
 
         //Make sure the json file exists
-        var combinedPath = Path.Combine(Application.persistentDataPath, FileName);
+        var combinedPath = Application.persistentDataPath + "/" + FileName;
         Debug.Log(combinedPath);
        if (!File.Exists(combinedPath))
         {
@@ -38,18 +38,32 @@ public class JsonSaver : IFileSaver
         }
 
         //Convert struct to json
-        var jsonObject = JsonUtility.ToJson(score, true);
+        var jsonObject = JsonUtility.ToJson(gameData, true);
+        Debug.Log(jsonObject);
 
         //Write to file
         File.WriteAllText(combinedPath, jsonObject);  
     }
-    public Score Load(string path)
+    public GameData Load()
     {
-        Score score = new Score();
+        GameData gameData = new GameData();
 
-        string jsonString = File.ReadAllText(path);
+        var combinedPath = Application.persistentDataPath + "/" + FileName;
+        Debug.Log(combinedPath);
+        if (!File.Exists(combinedPath))
+        {
+            Debug.LogError("Could not find a file to load");
+            return null;
+        }
 
-        score = JsonUtility.FromJson<Score>(jsonString);
-        return score;
+            string jsonString = File.ReadAllText(combinedPath);
+
+        gameData = JsonUtility.FromJson<GameData>(jsonString);
+        return gameData;
+    }
+
+    public void DeleteAllFiles()
+    {
+        //TODO: delete files
     }
 }

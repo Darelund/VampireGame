@@ -1,9 +1,14 @@
-using UnityEngine;
+using System.Collections.Generic;
 
-public class GameData : MonoBehaviour
+using System;
+
+[Serializable]
+public class GameData
 {
-    
+    public List<Score> scores = new List<Score>(); //JsonUtility can't work with stack, therefore I will use List, might use stack again when I re-learn how
+    //to serialize json without JsonUtility
 }
+[Serializable]
 public class PlayedTime
 {
     public readonly float Hour;
@@ -17,4 +22,9 @@ public class PlayedTime
         Second = second;
     }
     public PlayedTime GetPlayedTime() => new PlayedTime(Hour, Minute, Second);
+
+    public override string ToString()
+    {
+        return $"{Hour}{Minute}{Second}";
+    }
 }

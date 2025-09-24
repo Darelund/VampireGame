@@ -6,6 +6,8 @@ public class GameManager : StateMachine, ISaveable
 {
     // [SerializeField] private PlayerMovement
     private int _enemiesKilled;
+    //public string Name;
+
     public int GetEnemiesKilled
     {
         get => _enemiesKilled;
@@ -43,11 +45,12 @@ public class GameManager : StateMachine, ISaveable
         
     }
 
-    public void Save(Score score)
+    public void Save(GameData score)
     {
-        score.EnemiesKilled = _enemiesKilled;
-
+        var newestScore = score.scores[(score.scores.Count - 1)];
+        newestScore.EnemiesKilled = _enemiesKilled;
+        //score.Name = Name;
         TimeSpan time = TimeSpan.FromSeconds(Time.time);
-        score.Time = new PlayedTime(time.Hours, time.Minutes, time.Seconds);
+        //newestScore.Time = new PlayedTime(time.Hours, time.Minutes, time.Seconds);
     }
 }

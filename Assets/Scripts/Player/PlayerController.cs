@@ -2,7 +2,6 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour, ISaveable
 {
-    public string Name;
 
     [SerializeField] private PlayerMovement playerMovement;
     [SerializeField] private PlayerRotater playerRotater;
@@ -17,11 +16,11 @@ public class PlayerController : MonoBehaviour, ISaveable
 
     public PlayerHealth GetPlayerHealth => playerHealth;
 
-    public void Save(Score score)
+    public void Save(GameData score)
     {
-        score.Name = Name;
-        score.Level = playerUpgrade.GetCurrentLevel;
-        score.ExperiencePoints = playerUpgrade.GetTotalExperiencePoints;
+        var newestScore = score.scores[(score.scores.Count - 1)];
+        newestScore.Level = playerUpgrade.GetCurrentLevel;
+        newestScore.ExperiencePoints = playerUpgrade.GetTotalExperiencePoints;
     }   
 
     public void UpdatePlayer()

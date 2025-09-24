@@ -1,26 +1,33 @@
+
+
 using System;
-using UnityEngine;
 
-
-//[Serializable] You don't need to
+[Serializable]
 public class Score
 {
+    public int Rank;
     public string Name;
     public int ExperiencePoints;
     public int Waves;
     public int Level;
     public int EnemiesKilled;
-    public PlayedTime Time;
+    //public PlayedTime Time;
 
-    public Score(string name, int exp, int waves, int level, int enemiesKilled, PlayedTime time)
+    public Score(int rank, string name, int exp, int waves, int level, int enemiesKilled, PlayedTime time)
     {
-        this.Name = name;
-        this.ExperiencePoints = exp;
-        this.Waves = waves;
-        this.Level = level;
+        Rank = rank;
+        Name = name;
+        ExperiencePoints = exp;
+        Waves = waves;
+        Level = level;
         EnemiesKilled = enemiesKilled;
-        Time = time;
+       // Time = time;
     }
     public Score() { }
-    public Score GetScore() => this;//Or should I return a new object?
+    public Score GetScore() => this;
+
+    public override string ToString()
+    {
+        return $"{Rank} {Name} {ExperiencePoints} {Waves} {Level} {EnemiesKilled} ";
+    }
 }
