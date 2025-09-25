@@ -14,6 +14,10 @@ public class State : MonoBehaviour
     {
 
     }
+    public virtual void LateUpdateState()
+    {
+
+    }
 
     public virtual void ExitState()
     {

@@ -28,6 +28,9 @@ public class PlayerController : MonoBehaviour, ISaveable
         playerMovement.UpdateMovement();
         playerRotater?.Rotate();
         playerShooter.UpdateShooting();
+    }
+    public void LateUpdatePlayer()
+    {
         cameraFollow?.LateUpdateCamera();
     }
 }

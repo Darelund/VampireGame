@@ -22,6 +22,7 @@ public class StateMachine : MonoBehaviour
         Debug.LogWarning("New state not found");
     }
     public virtual void UpdateStateMachine() => currentState?.UpdateState();
+    public virtual void LateUpdateStateMachine() => currentState?.LateUpdateState();
     public bool IsState<aState>()
     {
         if (!currentState) return false;

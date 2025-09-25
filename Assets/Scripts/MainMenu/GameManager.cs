@@ -41,8 +41,10 @@ public class GameManager : StateMachine, ISaveable
     private void Update()
     {
         UpdateStateMachine();
-
-        
+    }
+    private void LateUpdate()
+    {
+        LateUpdateStateMachine();
     }
 
     public void Save(GameData score)

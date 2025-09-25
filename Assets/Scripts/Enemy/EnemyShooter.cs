@@ -36,7 +36,9 @@ public class EnemyShooter : MonoBehaviour
         var projectileObj = Instantiate(projectilePrefab, transform.position + normalizedDir * 2, Quaternion.identity);
 
         var projSpeed = 30;
-        projectileObj.GetComponent<Projectile>().Init(normalizedDir, projSpeed);
+        var projectile = projectileObj.GetComponent<Projectile>();
+        projectile.Init(normalizedDir, projSpeed);
+        projectile.owner = ProjectileOwner.NonPlayer;
         ProjectileManager.Instance.GetProjectileList.Add(projectileObj);
 
     }

@@ -25,6 +25,9 @@ public class PlayingState : State
     public override void FixedUpdateState()
     {
         base.FixedUpdateState();
-    }   
-
+    }
+    public override void LateUpdateState()
+    {
+        controller.LateUpdatePlayer();
+    }
 }

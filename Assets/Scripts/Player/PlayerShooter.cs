@@ -47,12 +47,14 @@ public class PlayerShooter : MonoBehaviour
         canShoot = false;
         var mouseInWorldSpace = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         mouseInWorldSpace.z = 0; //Ignore depth
-        var dir = (mouseInWorldSpace - transform.position);
+        var dir = (mouseInWorldSpace - attackPosition.position);
         var normalizedDir = dir.normalized;
-        var projectileObj = Instantiate(projectilePrefab, transform.position + normalizedDir * 2, Quaternion.identity);
+        var projectileObj = Instantiate(projectilePrefab, attackPosition.position, Quaternion.identity);
 
         var projSpeed = 30;
-        projectileObj.GetComponent<Projectile>().Init(normalizedDir, projSpeed);
+        var projectile = projectileObj.GetComponent<Projectile>();
+        projectile.Init(normalizedDir, projSpeed);
+        projectile.owner = ProjectileOwner.Player;
         ProjectileManager.Instance.GetProjectileList.Add(projectileObj);
     }
     private void CreateAttackParticles()
