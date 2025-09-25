@@ -38,7 +38,7 @@ public class EnemyShooter : MonoBehaviour
         var projSpeed = 30;
         var projectile = projectileObj.GetComponent<Projectile>();
         projectile.Init(normalizedDir, projSpeed);
-        projectile.owner = ProjectileOwner.NonPlayer;
+        projectileObj.layer = 7;
         ProjectileManager.Instance.GetProjectileList.Add(projectileObj);
 
     }

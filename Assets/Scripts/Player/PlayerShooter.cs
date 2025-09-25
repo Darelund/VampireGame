@@ -54,13 +54,13 @@ public class PlayerShooter : MonoBehaviour
         var projSpeed = 30;
         var projectile = projectileObj.GetComponent<Projectile>();
         projectile.Init(normalizedDir, projSpeed);
-        projectile.owner = ProjectileOwner.Player;
+        projectileObj.layer = 6;
         ProjectileManager.Instance.GetProjectileList.Add(projectileObj);
     }
     private void CreateAttackParticles()
     {
-        var attackObj = Instantiate(AttackPrefab, attackPosition.position, Quaternion.identity);
-        attackObj.transform.SetParent(transform.GetChild(1));
+        var attackObj = Instantiate(AttackPrefab, attackPosition.position, Quaternion.identity, attackPosition);
+       // attackObj.transform.SetParent(transform.GetChild(1));
         //attackObj.transform.position = Vector2.zero;
     }
 }

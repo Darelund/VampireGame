@@ -1,10 +1,6 @@
 using UnityEngine;
 
-public enum ProjectileOwner
-{
-    Player,
-    NonPlayer
-}
+
 public class Projectile : Damageable
 {
     [SerializeField] private Rigidbody2D rb;
@@ -16,7 +12,6 @@ public class Projectile : Damageable
 
     [SerializeField] private GameObject visuals;
 
-    public ProjectileOwner owner;
 
     protected override void Awake()
     {
@@ -43,7 +38,7 @@ public class Projectile : Damageable
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.collider.GetComponent<PlayerController>() && owner == ProjectileOwner.Player) return; //We don't want the player to shoot themselves
+        if (collision.collider.gameObject.layer == 6 && gameObject.layer == 6) return; //We don't want the player to shoot themselves
         var damageableObject = collision.collider.GetComponent<Damageable>();
         if (damageableObject != null && damageableObject.GetComponent<Projectile>() == null)
         {

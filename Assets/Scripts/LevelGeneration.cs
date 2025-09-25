@@ -53,7 +53,7 @@ public class LevelGeneration : MonoBehaviour
                 {
                     int rdnObject = Random.Range(0, environmentPrefabs.Count);
 
-                    GameObject g = Instantiate(environmentPrefabs[rdnObject], spawnPosition, Quaternion.Euler(-34, 0, 0));
+                    GameObject g = Instantiate(environmentPrefabs[rdnObject], spawnPosition, Quaternion.Euler(-34, 0, 0), transform);
                     spawnedObjects.Add(g);
                 }
             }
