@@ -21,8 +21,8 @@ public class LoadDataManager : MonoBehaviour
     }
     public GameData gameData;
 
-    private IFileSaver _fileSaver;
-    private List<ISaveable> saveableElements = new List<ISaveable>();
+    private IFileSaver<GameData> _fileSaver;
+    private List<ISaveable<GameData>> saveableElements = new List<ISaveable<GameData>>();
 
     private void Awake()
     {
@@ -30,11 +30,18 @@ public class LoadDataManager : MonoBehaviour
             Destroy(gameObject);
 
         instance = this;
-        _fileSaver = new JsonSaver();
-        saveableElements = GameObject.FindObjectsByType<MonoBehaviour>(FindObjectsInactive.Exclude, FindObjectsSortMode.None).OfType<ISaveable>().ToList();
+        _fileSaver = new JsonSaver<GameData>();
+        saveableElements = GameObject.FindObjectsByType<MonoBehaviour>(FindObjectsInactive.Exclude, FindObjectsSortMode.None).OfType<ISaveable<GameData>>().ToList();
         gameData = new GameData();
         LoadGameData();
+        Application.quitting += Application_quitting;
     }
+
+    private void Application_quitting()
+    {
+        SaveGameData();
+    }
+
     private void Update()
     {
         if(Input.GetKeyDown(KeyCode.C))
@@ -56,8 +63,5 @@ public class LoadDataManager : MonoBehaviour
     public void LoadGameData()
     {
         gameData = _fileSaver.Load();
-        //gameData.scores.Add(new Score(1, "Bob", 1, 1, 0, 1, new PlayedTime(0, 0, 1)));
-        //gameData.scores.Add(new Score(3, "Diva", 9999, 99, 9, 999, new PlayedTime(0, 10, 0)));
-        //gameData.scores.Add(new Score(2, "Jesse", 546, 7, 2, 119, new PlayedTime(0, 0, 1)));
     }
 }

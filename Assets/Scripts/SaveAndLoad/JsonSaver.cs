@@ -1,13 +1,13 @@
 using System.IO;
 using UnityEngine;
 
-public class JsonSaver : IFileSaver
+public class JsonSaver<T> : IFileSaver<T> where T : new()
 {
     //path
     //directory
     //File
     //Application.persistentDataPath or Application.DataPath
-    public string FileName { get; private set; } = "ScoreData.json";
+    public string FileName { get; set; } = "ScoreData.json";
     private string FullPath = Application.persistentDataPath;
 
     public JsonSaver()
@@ -23,7 +23,7 @@ public class JsonSaver : IFileSaver
         }
     }
 
-    public void Save(GameData gameData)
+    public void Save(T gameData)
     {
         Debug.Log(FullPath);
 
@@ -44,22 +44,25 @@ public class JsonSaver : IFileSaver
         //Write to file
         File.WriteAllText(combinedPath, jsonObject);  
     }
-    public GameData Load()
+    public T Load()
     {
-        GameData gameData = new GameData();
+        T data = new T();
 
         var combinedPath = Application.persistentDataPath + "/" + FileName;
         Debug.Log(combinedPath);
         if (!File.Exists(combinedPath))
         {
-            Debug.LogError("Could not find a file to load");
-            return null;
+            Debug.Log("Could not find a file to load, so I create one");
+
+            var fileStream = File.Create(Path.Combine(Application.persistentDataPath, FileName));
+            //How does it give it the right name?
+            fileStream.Close();
         }
 
             string jsonString = File.ReadAllText(combinedPath);
-
-        gameData = JsonUtility.FromJson<GameData>(jsonString);
-        return gameData;
+        Debug.Log(jsonString);
+        data = JsonUtility.FromJson<T>(jsonString);
+        return data;
     }
 
     public void DeleteAllFiles()

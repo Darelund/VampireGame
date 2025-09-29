@@ -1,9 +1,9 @@
 using UnityEngine;
 
-public interface IFileSaver
+public interface IFileSaver<T>
 {
-    string FileName { get; }
-    void Save(GameData score);
-    GameData Load();
+    string FileName { get; set; }
+    void Save(T data);
+    T Load();
     void DeleteAllFiles();
 }
