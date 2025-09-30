@@ -12,5 +12,7 @@ public class AddAbilityUpgrade : Upgrade
     {
         Instantiate(NewAbilityPrefab, playerController.transform);
         GameManager.Instance.SwitchState<PlayingState>();
+        Debug.Log("Added ability");
+
     }
 }

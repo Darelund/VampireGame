@@ -35,11 +35,11 @@ public class PlayerUpgrade : MonoBehaviour
     {
         abilityUpgrades = new Dictionary<string, PlayerStat>()
         {
-            ["dash"]    =  new(floatData: 5),
-            ["dodge"]   =  new(),
-            ["sprint"] = new(boolData: false),
-            ["health"]  =  new(),
-            ["speed"]   =  new()
+            ["dash"]    =  new(boolData: false),
+            ["dodge"]   =  new(boolData: false),
+            ["sprint"]  =  new(boolData: false),
+            ["health"]  =  new(floatData: 100),
+            ["speed"]   =  new(floatData: 5)
         };
     }
 

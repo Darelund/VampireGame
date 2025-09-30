@@ -9,11 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 17e1272c8f894a64b9c2b07d476931ba, type: 3}
+  m_Script: {fileID: 11500000, guid: 4a51c3c149d59534dad6c1153bf095c6, type: 3}
   m_Name: Shield
-  m_EditorClassIdentifier: Assembly-CSharp::UpgradeSO
-  Name: shield
-  Description: 
+  m_EditorClassIdentifier: Assembly-CSharp::AddUpgradeSO
+  Description: Takes no damage for 3 seconds every 10 seconds
   Image: {fileID: 0}
-  AbilityType: 1
-  Prefab: {fileID: 4063512225015460279, guid: 1de6425561d2ea449bfb4477a8fae3bf, type: 3}
+  Prefab: {fileID: 5679388856492731768, guid: d353d0daba8716b4cbd9e419c674e743, type: 3}
+  Name: Shield

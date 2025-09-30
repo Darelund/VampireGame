@@ -9,9 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 17e1272c8f894a64b9c2b07d476931ba, type: 3}
-  m_Name: Speed1
-  m_EditorClassIdentifier: Assembly-CSharp::UpgradeSO
-  Name: speed1
-  Description: 
+  m_Script: {fileID: 11500000, guid: 735c1d43c2d84a9458ec9b9b4d4d9253, type: 3}
+  m_Name: Speed
+  m_EditorClassIdentifier: Assembly-CSharp::ChangeUpgradeSO
+  Description: 5
   Image: {fileID: 0}
+  Prefab: {fileID: 8076664252155117396, guid: fb3edeba14d02b84eb9e05f71e2026f7, type: 3}
+  ChangeAbilityType: 1

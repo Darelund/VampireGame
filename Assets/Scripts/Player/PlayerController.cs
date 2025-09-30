@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour, ISaveable
@@ -10,11 +11,9 @@ public class PlayerController : MonoBehaviour, ISaveable
     [SerializeField] private PlayerHealth playerHealth;
     [SerializeField] private PlayerUpgrade playerUpgrade;
 
+    //TODO: Add maybe an event for when an ability gets changed
+    public event Action OnChangeAbility;
 
-    public PlayerMovement GetPlayerMovement => playerMovement;
-    public PlayerShooter GetPlayerShooter => playerShooter;
-
-    public PlayerHealth GetPlayerHealth => playerHealth;
 
     public void Save(GameData score)
     {

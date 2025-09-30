@@ -22,25 +22,26 @@ public class UpgradeState : State
     {
         for (int i = 0; playerUpgrade.levelUps[playerUpgrade.GetCurrentLevel].Upgrades.Count > i; i++)
         {
-            var upgradeSO = playerUpgrade.levelUps[playerUpgrade.GetCurrentLevel].Upgrades[i];
+            UpgradeSO upgradeSO = playerUpgrade.levelUps[playerUpgrade.GetCurrentLevel].Upgrades[i];
             GameObject upgradeGameObject = null;
-            if (upgradeSO.AbilityType == AbilityType.AddAbility)
+            if (upgradeSO is AddUpgradeSO addUpgradeSO)
             {
                upgradeGameObject = Instantiate(addAbilityPrefab, UpgradeUI.transform.GetChild(1));
-                upgradeGameObject.GetComponent<AddAbilityUpgrade>().NewAbilityPrefab = upgradeSO.Prefab;
+               upgradeGameObject.GetComponent<AddAbilityUpgrade>().NewAbilityPrefab = upgradeSO.Prefab;
+                upgradeGameObject.GetComponent<AddAbilityUpgrade>().upgradeText.text = addUpgradeSO.Name;
             }
-            else if (upgradeSO.AbilityType == AbilityType.ChangeAbility)
+            else if (upgradeSO is ChangeUpgradeSO changeUpgradeSO)
             {
                 upgradeGameObject = Instantiate(changeAbilityPrefab, UpgradeUI.transform.GetChild(1));
-                upgradeGameObject.GetComponent<ChangeAbilityUpgrade>()._upgrade = upgradeSO.Name;
+                upgradeGameObject.GetComponent<ChangeAbilityUpgrade>().upgradeText.text = changeUpgradeSO.ChangeAbilityType.ToString();
+                //upgradeGameObject.GetComponent<ChangeAbilityUpgrade>().upgr = upgradeSO.Name;
             }
             if (upgradeGameObject == null)
             {
                 Debug.LogError("Upgrade object shouldn't be null");
                 return;
             }
-            upgradeGameObject.GetComponent<Upgrade>().upgradeImage = upgradeSO.Image;
-            upgradeGameObject.GetComponent<Upgrade>().upgradeText.text = upgradeSO.Name;
+            upgradeGameObject.GetComponent<Upgrade>().upgradeImage.sprite = upgradeSO.Image;
         }
     }
 }
