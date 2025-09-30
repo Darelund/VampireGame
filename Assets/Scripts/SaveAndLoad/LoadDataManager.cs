@@ -44,10 +44,10 @@ public class LoadDataManager : MonoBehaviour
 
     private void Update()
     {
-        if(Input.GetKeyDown(KeyCode.C))
-        {
-            SaveGameData();
-        }
+        //if(Input.GetKeyDown(KeyCode.C))
+        //{
+        //    SaveGameData();
+        //}
     }
     public void SaveGameData()
     {

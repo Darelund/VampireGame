@@ -4,16 +4,38 @@ public class PlayerMovement : MonoBehaviour
 {
     [SerializeField] private float currentSpeed;
     [SerializeField] private float moveSpeed;
-    [SerializeField] private float sprintSpeed;
-
+    //[SerializeField] private float sprintSpeed;
     [SerializeField] private Rigidbody2D Rigidbody2D;
+
+
+    [SerializeField] private bool canSprint;
+    [SerializeField] private bool canDash;
+    [SerializeField] private bool canDodge;
+
+    public bool CanSprint
+    {
+        get => canSprint;
+        set => canSprint = value;
+    }
+    public bool CanDash
+    {
+        get => canDash;
+        set => canDash = value;
+    }
+    public bool CanDodge
+    {
+        get => canDodge;
+        set => canDodge = value;
+    }
+
+
 
     private float CurrentSpeed
     {
         get 
         {
-            if (isSprinting)
-                currentSpeed = sprintSpeed;
+            if (isSprinting && canSprint)
+                currentSpeed = /*sprintSpeed*/ moveSpeed + 10;
             else
                 currentSpeed = moveSpeed;
 
@@ -21,12 +43,12 @@ public class PlayerMovement : MonoBehaviour
         }
     }
     public void ChangeMoveSpeed(float newSpeed) => moveSpeed = newSpeed;
-    public void ChangeSprintSpeed(float newSprintSpeed) => sprintSpeed = newSprintSpeed;
+    //public void ChangeSprintSpeed(float newSprintSpeed) => sprintSpeed = newSprintSpeed;
 
 
-    private Vector2 dir;
-    private float hor;
-    private float ver;
+    private Vector2 direction;
+    private float horizontalInput;
+    private float verticalInput;
 
     [SerializeField] private bool isSprinting;
 
@@ -35,17 +57,7 @@ public class PlayerMovement : MonoBehaviour
         GetInput();
         Move();
     }
-    public void FixedUpdateMovement()
-    {
-        MoveWithRigidbody();
-    }
-    private void MoveWithRigidbody()
-    {
-        //if(Rigidbody2D.linearVelocity.magnitude < 10)
-        //{
-        //    Rigidbody2D.AddForce(dir * CurrentSpeed);
-        //}
-    }
+   
     private void GetInput()
     {
         MoveInput();
@@ -54,11 +66,11 @@ public class PlayerMovement : MonoBehaviour
     
     private void MoveInput()
     {
-        hor = Input.GetAxisRaw("Horizontal");
-        ver = Input.GetAxisRaw("Vertical");
+        horizontalInput = Input.GetAxisRaw("Horizontal");
+        verticalInput = Input.GetAxisRaw("Vertical");
 
-        dir = new Vector2(hor, ver);
-        dir.Normalize();
+        direction = new Vector2(horizontalInput, verticalInput);
+        direction.Normalize();
     }
     private void SprintInput()
     {
@@ -66,6 +78,6 @@ public class PlayerMovement : MonoBehaviour
     }
     private void Move()
     {
-        transform.position += (Vector3)(dir * CurrentSpeed * Time.deltaTime);
+        transform.position += (Vector3)(direction * CurrentSpeed * Time.deltaTime);
     }
 }

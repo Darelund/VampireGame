@@ -23,7 +23,7 @@ public class PlayerUpgrade : MonoBehaviour
     public int GetCurrentLevel => currentLevel;
 
 
-    public Dictionary<string, (string, object)> abilityUpgrades;
+    public Dictionary<string, PlayerStat> abilityUpgrades;
 
     private void Awake()
     {
@@ -33,17 +33,13 @@ public class PlayerUpgrade : MonoBehaviour
     }
     private void CreateAbilityUpgrades()
     {
-        abilityUpgrades = new Dictionary<string, (string Script, object value)>()
+        abilityUpgrades = new Dictionary<string, PlayerStat>()
         {
-            ["dash"] = ("PlayerMovement", true),
-            ["dodge"] = ("PlayerMovement", true),
-            ["health1"] = ("PlayerHealth", 150.0f),
-            ["health2"] = ("PlayerHealth", 200),
-            ["health3"] = ("PlayerHealth", 250),
-            ["speed1"] = ("PlayerMovement", 10),
-            ["speed2"] = ("PlayerMovement", 15),
-            ["speed3"] = ("PlayerMovement", 20)
-
+            ["dash"]    =  new(floatData: 5),
+            ["dodge"]   =  new(),
+            ["sprint"] = new(boolData: false),
+            ["health"]  =  new(),
+            ["speed"]   =  new()
         };
     }
 
@@ -79,4 +75,20 @@ public class Level
         ExperiencePoints = exp;
         Upgrades = upgrades;
     }
+}
+[System.Serializable]
+public class PlayerStat
+{
+    public string stringData;
+    public float floatData;
+    public bool boolData;
+
+    public PlayerStat(string stringData = "", float floatData = 0, bool boolData = false)
+    {
+        this.stringData = stringData;
+        this.floatData = floatData;
+        this.boolData = boolData;
+    }
+
+   // public PlayerStat() { }
 }
