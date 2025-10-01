@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -22,8 +23,23 @@ public class PlayerUpgrade : MonoBehaviour
     public int GetTotalExperiencePoints => totalExperiencePoints;
     public int GetCurrentLevel => currentLevel;
 
+    public event Action<Dictionary<string, PlayerStat>> OnChangeAbility;
 
-    public Dictionary<string, PlayerStat> abilityUpgrades;
+
+    private Dictionary<string, PlayerStat> abilityUpgrades;
+    public Dictionary<string, PlayerStat> AbilityUpgrades
+    {
+        get { return abilityUpgrades; }
+        set 
+        { 
+            abilityUpgrades = value; 
+            OnChangeAbility?.Invoke(abilityUpgrades);
+        }
+    }
+    public void FireChangeAbility()
+    {
+        OnChangeAbility?.Invoke(abilityUpgrades);
+    }
 
     private void Awake()
     {
@@ -35,11 +51,11 @@ public class PlayerUpgrade : MonoBehaviour
     {
         abilityUpgrades = new Dictionary<string, PlayerStat>()
         {
-            ["dash"]    =  new(boolData: false),
-            ["dodge"]   =  new(boolData: false),
-            ["sprint"]  =  new(boolData: false),
-            ["health"]  =  new(floatData: 100),
-            ["speed"]   =  new(floatData: 5)
+            ["Dash"]    =  new(boolData: false),
+            ["Dodge"]   =  new(boolData: false),
+            ["Sprint"]  =  new(boolData: false),
+            ["Health"]  =  new(floatData: 100),
+            ["Speed"]   =  new(floatData: 5)
         };
     }
 

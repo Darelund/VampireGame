@@ -3,6 +3,7 @@ using UnityEngine;
 public class UpgradeState : State
 {
     [SerializeField] private GameObject UpgradeUI;
+    [SerializeField] private Transform UpgradeParent;
 
     [SerializeField] private GameObject addAbilityPrefab;
     [SerializeField] private GameObject changeAbilityPrefab;
@@ -26,15 +27,15 @@ public class UpgradeState : State
             GameObject upgradeGameObject = null;
             if (upgradeSO is AddUpgradeSO addUpgradeSO)
             {
-               upgradeGameObject = Instantiate(addAbilityPrefab, UpgradeUI.transform.GetChild(1));
+               upgradeGameObject = Instantiate(addAbilityPrefab, UpgradeParent);
                upgradeGameObject.GetComponent<AddAbilityUpgrade>().NewAbilityPrefab = upgradeSO.Prefab;
                 upgradeGameObject.GetComponent<AddAbilityUpgrade>().upgradeText.text = addUpgradeSO.Name;
             }
             else if (upgradeSO is ChangeUpgradeSO changeUpgradeSO)
             {
-                upgradeGameObject = Instantiate(changeAbilityPrefab, UpgradeUI.transform.GetChild(1));
+                upgradeGameObject = Instantiate(changeAbilityPrefab, UpgradeParent);
                 upgradeGameObject.GetComponent<ChangeAbilityUpgrade>().upgradeText.text = changeUpgradeSO.ChangeAbilityType.ToString();
-                //upgradeGameObject.GetComponent<ChangeAbilityUpgrade>().upgr = upgradeSO.Name;
+                upgradeGameObject.GetComponent<ChangeAbilityUpgrade>().ChangeUpgradeSO = changeUpgradeSO;
             }
             if (upgradeGameObject == null)
             {

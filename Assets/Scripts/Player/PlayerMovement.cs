@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
@@ -79,5 +80,13 @@ public class PlayerMovement : MonoBehaviour
     private void Move()
     {
         transform.position += (Vector3)(direction * CurrentSpeed * Time.deltaTime);
+    }
+    public void PlayerMovement_OnValuesChanged(Dictionary<string, PlayerStat> stats)
+    {
+        canDash = stats["Dash"].boolData;
+        canDodge = stats["Dodge"].boolData;
+        canSprint = stats["Sprint"].boolData;
+        moveSpeed = stats["Speed"].floatData;
+        //   stats["speed"]
     }
 }

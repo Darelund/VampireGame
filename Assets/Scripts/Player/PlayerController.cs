@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour, ISaveable
@@ -12,8 +13,21 @@ public class PlayerController : MonoBehaviour, ISaveable
     [SerializeField] private PlayerUpgrade playerUpgrade;
 
     //TODO: Add maybe an event for when an ability gets changed
-    public event Action OnChangeAbility;
 
+
+
+    //private void PlayerController_OnChangeAbility(Dictionary<string, PlayerStat> stats)
+    //{
+
+    //}
+    private void Start()
+    {
+        //Initialize All scripts
+        //playerHealth.SetmaxHealth(playerUpgrade.AbilityUpgrades["Health"].floatData);
+        playerUpgrade.OnChangeAbility += playerHealth.PlayerHealth_OnValuesChanged;
+        playerUpgrade.OnChangeAbility += playerMovement.PlayerMovement_OnValuesChanged;
+        playerUpgrade.FireChangeAbility();
+    }
 
     public void Save(GameData score)
     {

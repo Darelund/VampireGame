@@ -5,8 +5,6 @@ using UnityEngine.UI;
 
 public abstract class Upgrade : MonoBehaviour
 {
-    [SerializeField] protected UpgradeSO upgradeSO;
-     //public UpgradeSO GetUpgradeSO
      protected PlayerController playerController;
 
     [SerializeField] public Image upgradeImage;

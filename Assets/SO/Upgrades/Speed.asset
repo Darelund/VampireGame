@@ -15,4 +15,8 @@ MonoBehaviour:
   Description: 5
   Image: {fileID: 0}
   Prefab: {fileID: 8076664252155117396, guid: fb3edeba14d02b84eb9e05f71e2026f7, type: 3}
+  playerStat:
+    stringData: 
+    floatData: 10
+    boolData: 0
   ChangeAbilityType: 1
