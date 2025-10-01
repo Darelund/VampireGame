@@ -14,11 +14,11 @@ public class EnemyMovement : MonoBehaviour
         Move();
         LookAtPlayer();
     }
-    private void Move()
+    protected virtual void Move()
     {
         transform.position = Vector2.MoveTowards(transform.position, target.transform.position, speed * Time.deltaTime);
     }
-    private void LookAtPlayer()
+    protected virtual void LookAtPlayer()
     {
         var playerDir = (target.transform.position - transform.position).normalized;
         var angle = Mathf.Atan2(playerDir.y, playerDir.x) * Mathf.Rad2Deg;
