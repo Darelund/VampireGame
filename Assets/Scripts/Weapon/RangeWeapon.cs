@@ -8,7 +8,7 @@ public class RangeWeapon : BaseWeapon
     [SerializeField] private Transform target; //Right now its the target of enemy movement... how to change
 
 
-    protected void Awake()
+    protected void Start()
     {
         if (GetWeaponOwner == CharacterType.NonPlayer)
             target = GameManager.Instance.Player.transform;

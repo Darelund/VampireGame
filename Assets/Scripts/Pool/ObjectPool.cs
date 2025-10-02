@@ -3,26 +3,27 @@ using UnityEngine;
 
 public class ObjectPool : MonoBehaviour //Maybe make it generic
 {
-    [SerializeField] private int poolSize;
-    [SerializeField] private bool automaticallyExpandPoolSize;
-    [SerializeField] private GameObject poolPrefab; //TODO: A system to have more than one object and control how many should spawn of each object
-    [SerializeField] private Transform poolParent;
+    [SerializeField] protected int poolSize;
+    [SerializeField] protected bool automaticallyExpandPoolSize;
+    [SerializeField] protected GameObject poolPrefab;
+    [SerializeField] protected Transform poolParent;
 
 
 
 
-    private Stack<GameObject> poolStack;
+    protected Stack<GameObject> poolStack;
 
-    private void Awake()
-    {
-        InitializePool();
-    }
-    public void InitializePool()
+    //protected virtual void Awake()
+    //{
+    //    InitializePool();
+    //}
+    public virtual void InitializePool()
     {
         poolStack = new Stack<GameObject>();
 
         for (int i = 0; i < poolSize; i++)
         {
+          //  int rndPick = Random.Range(0, poolPrefab.Length);
             var instance = Instantiate(poolPrefab, poolParent);
 
             instance.GetComponent<ObjectToPool>().Pool = this;
@@ -32,7 +33,7 @@ public class ObjectPool : MonoBehaviour //Maybe make it generic
 
 
     }
-    public GameObject UsePool()
+    public virtual GameObject UsePool()
     {
         GameObject instance = null;
         if(poolStack.Count == 0)
@@ -40,6 +41,7 @@ public class ObjectPool : MonoBehaviour //Maybe make it generic
             Debug.Log("Pool is empty");
             if(automaticallyExpandPoolSize)
             {
+               // int rndPick = Random.Range(0, poolPrefab.Length);
                 instance = Instantiate(poolPrefab, poolParent);
                 instance.GetComponent<ObjectToPool>().Pool = this;
             }
@@ -54,7 +56,7 @@ public class ObjectPool : MonoBehaviour //Maybe make it generic
         return instance;
 
     }
-    public void GiveBackToPool(ObjectToPool instance)
+    public virtual void GiveBackToPool(ObjectToPool instance)
     {
         instance.gameObject.SetActive(false);
         poolStack.Push(instance.gameObject);
