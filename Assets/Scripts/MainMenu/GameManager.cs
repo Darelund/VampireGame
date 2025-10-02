@@ -4,7 +4,12 @@ using UnityEngine;
 
 public class GameManager : StateMachine, ISaveable
 {
-    // [SerializeField] private PlayerMovement
+    [SerializeField] private GameObject player;
+    public GameObject Player => player; 
+
+
+
+
     private int _enemiesKilled;
     //public string Name;
 
@@ -33,10 +38,13 @@ public class GameManager : StateMachine, ISaveable
     {
         if(instance != null) Destroy(gameObject);
         instance = this;
+        player = GameObject.Find("Player");
+
     }
     private void Start()
     {
         SwitchState<PlayingState>();
+
     }
     private void Update()
     {

@@ -6,7 +6,7 @@ public class PlayingState : State
     [SerializeField] private EnemyManager enemyManager;
     [SerializeField] private EnemySpawner enemySpawner;
     [SerializeField] private ProjectileManager projectileManager;
-
+    [SerializeField] private WeaponManager weaponManager;
     public override void UpdateState()
     {
         base.UpdateState();
@@ -16,6 +16,8 @@ public class PlayingState : State
 
         enemyManager.UpdateAllEnemies();
         projectileManager.UpdateAllProjectiles();
+
+        weaponManager.UpdateAllWeapons();
 
         if (Input.GetKeyUp(KeyCode.Space))
         {

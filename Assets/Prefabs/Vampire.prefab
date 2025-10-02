@@ -25,13 +25,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6234876991281349335}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: -0.7071068, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 9001601934252909661}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -90}
 --- !u!212 &4665942375099145
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -100,10 +100,10 @@ GameObject:
   m_Component:
   - component: {fileID: 9001601934252909661}
   - component: {fileID: 1086782183016703215}
-  - component: {fileID: 2612746126303726012}
   - component: {fileID: -8200076686487164073}
   - component: {fileID: -8261710014331415859}
-  - component: {fileID: 4144332207627770670}
+  - component: {fileID: 5175391270830954258}
+  - component: {fileID: 4091532295787802216}
   m_Layer: 0
   m_Name: Vampire
   m_TagString: Untagged
@@ -125,6 +125,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 5572763778105855582}
+  - {fileID: 606357826317428948}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1086782183016703215
@@ -139,23 +140,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 27c5343a343a41f4086b8ba7b89a65c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BaseEnemy
-  enemyMovement: {fileID: 2612746126303726012}
-  enemyShooter: {fileID: 4144332207627770670}
-  enemyHealth: {fileID: -8261710014331415859}
---- !u!114 &2612746126303726012
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7841204320835765149}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 785b91bcbc3c1bd4cb9a4fc328ddd948, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::EnemyMovement
-  target: {fileID: 0}
-  speed: 5
+  movement: {fileID: 5175391270830954258}
+  rotatable: {fileID: 4091532295787802216}
+  health: {fileID: -8261710014331415859}
 --- !u!58 &-8200076686487164073
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -222,7 +209,7 @@ MonoBehaviour:
       rgba: 4284309531
   UpgradePointObj: {fileID: 8268766501368687321, guid: d9b4dd97851e9364c8b7627b79f1ed36, type: 3}
   visuals: {fileID: 6234876991281349335}
---- !u!114 &4144332207627770670
+--- !u!114 &5175391270830954258
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -231,11 +218,99 @@ MonoBehaviour:
   m_GameObject: {fileID: 7841204320835765149}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 245ee65fccbd5fc4096fb5b7273ff3f7, type: 3}
+  m_Script: {fileID: 11500000, guid: 834df1c54f7518040ab42e87d677091a, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::EnemyShooter
-  projectilePrefab: {fileID: 5430049374541619485, guid: 3abf2715e90deda40829ce4055e1f646, type: 3}
-  cooldown: 1
-  currentCooldownTimer: 0
-  canShoot: 1
-  enemyMovement: {fileID: 2612746126303726012}
+  m_EditorClassIdentifier: Assembly-CSharp::MoveTowardsMovement
+  target: {fileID: 0}
+  speed: 5
+--- !u!114 &4091532295787802216
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7841204320835765149}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 759df439315dcc3488ecb38ab1c563e9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Rotatable
+  owner: 1
+--- !u!1001 &2737678083358338597
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 9001601934252909661}
+    m_Modifications:
+    - target: {fileID: 3284277021049325297, guid: c75c45d81f4a03d48b5c75551499458d, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3284277021049325297, guid: c75c45d81f4a03d48b5c75551499458d, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3284277021049325297, guid: c75c45d81f4a03d48b5c75551499458d, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3284277021049325297, guid: c75c45d81f4a03d48b5c75551499458d, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3284277021049325297, guid: c75c45d81f4a03d48b5c75551499458d, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3284277021049325297, guid: c75c45d81f4a03d48b5c75551499458d, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3284277021049325297, guid: c75c45d81f4a03d48b5c75551499458d, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3284277021049325297, guid: c75c45d81f4a03d48b5c75551499458d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3284277021049325297, guid: c75c45d81f4a03d48b5c75551499458d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3284277021049325297, guid: c75c45d81f4a03d48b5c75551499458d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6516763132228688244, guid: c75c45d81f4a03d48b5c75551499458d, type: 3}
+      propertyPath: m_Name
+      value: RangedWeapon
+      objectReference: {fileID: 0}
+    - target: {fileID: 7221536200231155939, guid: c75c45d81f4a03d48b5c75551499458d, type: 3}
+      propertyPath: cooldown
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7221536200231155939, guid: c75c45d81f4a03d48b5c75551499458d, type: 3}
+      propertyPath: weaponOwner
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7221536200231155939, guid: c75c45d81f4a03d48b5c75551499458d, type: 3}
+      propertyPath: currentCooldownTimer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7221536200231155939, guid: c75c45d81f4a03d48b5c75551499458d, type: 3}
+      propertyPath: AttackProjectilePrefab
+      value: 
+      objectReference: {fileID: 2313984966486234250, guid: 5a96eaf5e784c664abcc235f8142a768, type: 3}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: c75c45d81f4a03d48b5c75551499458d, type: 3}
+--- !u!4 &606357826317428948 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3284277021049325297, guid: c75c45d81f4a03d48b5c75551499458d, type: 3}
+  m_PrefabInstance: {fileID: 2737678083358338597}
+  m_PrefabAsset: {fileID: 0}

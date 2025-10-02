@@ -25,12 +25,11 @@ public class EnemyManager : MonoBehaviour
     }
 
 
-    // Update is called once per frame
     public void UpdateAllEnemies()
     {
         for (int i = 0; i < enemies.Count; i++)
         {
-            enemies[i].GetComponent<BaseEnemy>().UpdateEnemy();
+            enemies[i].GetComponent<EnemyController>().UpdateEnemy();
             //TODO: Remove enemies here
             if(!enemies[i].GetComponent<EnemyHealth>().IsAlive)
             {

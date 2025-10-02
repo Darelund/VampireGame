@@ -50,7 +50,9 @@ public class ObjectPool : MonoBehaviour //Maybe make it generic
                 return instance;
         }
         instance = poolStack.Pop();
+        instance.SetActive(true);
         return instance;
+
     }
     public void GiveBackToPool(ObjectToPool instance)
     {

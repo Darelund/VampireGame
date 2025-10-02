@@ -2,8 +2,10 @@ using UnityEngine;
 
 public class TestScript : MonoBehaviour
 {
-   public void SpawnTest()
+    [SerializeField] private int intValue;
+
+    private void Awake()
     {
-        Instantiate(Resources.Load<GameObject>(""));
+        intValue = 20;
     }
 }

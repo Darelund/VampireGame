@@ -60,7 +60,5 @@ public class PlayerShooter : MonoBehaviour
     private void CreateAttackParticles()
     {
         var attackObj = Instantiate(AttackPrefab, attackPosition.position, Quaternion.identity, attackPosition);
-       // attackObj.transform.SetParent(transform.GetChild(1));
-        //attackObj.transform.position = Vector2.zero;
     }
 }

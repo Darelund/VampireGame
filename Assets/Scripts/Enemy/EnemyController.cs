@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class BaseEnemy : MonoBehaviour
+public class EnemyController : MonoBehaviour
 {
     //BaseEnemy
     //Farm
@@ -60,7 +60,7 @@ public class BaseEnemy : MonoBehaviour
     //IMoveable, IAttackable, IAnimateable
 
 
-    //normal walk/run towards, teleport, around in circles, 
+    //normal walk/run towards, teleport, around in circles, walk if player is not looking, Red rose(röda rosen)(Move when the player isn't looking), Skuggkull(Shadow Hill?)
     //Enemy states Idle, walk, run, attack, Flee
     //But in this game, only move(run/walk) towards?
 
@@ -73,7 +73,10 @@ public class BaseEnemy : MonoBehaviour
      * 
      * Why does BaseEnemy even exist? Only for us to be able to group enemies into a list?????????
      */
-    [SerializeField] private EnemyMovement enemyMovement;
+
+    //OLD SOLUTION
+    /*
+     *   [SerializeField] private EnemyMovement enemyMovement;
     [SerializeField] private EnemyShooter enemyShooter; //Could move into own GameObject
     [SerializeField] private EnemyHealth enemyHealth; //
 
@@ -82,5 +85,23 @@ public class BaseEnemy : MonoBehaviour
         if (!enemyHealth.IsAlive) return;
         enemyMovement.UpdateMovement();
         enemyShooter.UpdateShooting();
+    }
+     */
+
+    //New Solution
+
+
+    [SerializeField] private Moveable movement;
+    [SerializeField] private Rotatable rotatable;
+    //[SerializeField] private EnemyShooter enemyShooter; //Moved to its own class
+    [SerializeField] private EnemyHealth health; // Still here, should it still be here? We should only move if alive, but if we are dead then its deactivated and will be in the ObjectPool
+    //So it won't Update regardless, right? Eh I will just leave it.
+
+    public void UpdateEnemy()
+    {
+        if (!health.IsAlive) return;
+        movement.UpdateMovement();
+        rotatable.Rotate();
+      //  enemyShooter.UpdateShooting();
     }
 }
