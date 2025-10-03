@@ -7,14 +7,17 @@ public class ObjectPoolManager : MonoBehaviour
     [SerializeField] private PoolData[] poolData;
     [SerializeField] private Dictionary<string, ObjectPool> objectPoolDictionary = new();
     public Dictionary<string, ObjectPool> GetObjectPools => objectPoolDictionary;
+    private bool isPooles = false;
 
 
-    private void Awake()
+    //private void Awake()
+    //{
+    //    InitializeAllPoles();
+    //}
+    public void InitializeAllPooles()
     {
-        InitializeAllPoles();
-    }
-    private void InitializeAllPoles()
-    {
+        if (isPooles) return;
+        isPooles = true;
         //Maybe each pool should initialize itself? Well lets initialize them all here.
         foreach (var pool in poolData)
         {

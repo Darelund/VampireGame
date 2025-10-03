@@ -39,12 +39,10 @@ public class GameManager : StateMachine, ISaveable
         if(instance != null) Destroy(gameObject);
         instance = this;
         player = GameObject.Find("Player");
-
     }
     private void Start()
     {
         SwitchState<PlayingState>();
-
     }
     private void Update()
     {

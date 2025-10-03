@@ -1834,7 +1834,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlayerController
   playerMovement: {fileID: 5719125412973447798}
   rotater: {fileID: 1316563214970833640}
-  playerShooter: {fileID: 0}
   cameraFollow: {fileID: 0}
   playerHealth: {fileID: 1518894871140453317}
   playerUpgrade: {fileID: 9121384271264511375}
@@ -1933,8 +1932,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerController
   currentHealth: 0
-  maxHealth: 100
-  healthBar: {fileID: 0}
+  maxHealth: 1000
 --- !u!114 &9121384271264511375
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1979,7 +1977,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 759df439315dcc3488ecb38ab1c563e9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Rotatable
-  weaponOwner: 0
+  owner: 0
 --- !u!1 &6506300346583445843
 GameObject:
   m_ObjectHideFlags: 0
@@ -2743,7 +2741,7 @@ PrefabInstance:
       objectReference: {fileID: 8176201847084811123}
     - target: {fileID: 7221536200231155939, guid: c75c45d81f4a03d48b5c75551499458d, type: 3}
       propertyPath: cooldown
-      value: 1
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 7221536200231155939, guid: c75c45d81f4a03d48b5c75551499458d, type: 3}
       propertyPath: weaponOwner

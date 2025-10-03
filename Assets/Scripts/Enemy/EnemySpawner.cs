@@ -49,7 +49,9 @@ public class EnemySpawner : MonoBehaviour
         //string enemyToSpawn = rndNumber == 1 ? "Enemy1" : "Lyktgubbe";
 
         var newEnemy = objectPoolManager.GetObjectPools["Lyktgubbe"].UsePool();
+        if (newEnemy == null) yield return null;
         newEnemy.transform.position = GetSpawnPosition();
+        newEnemy.GetComponent<EnemyController>().InitializeEnemy();
        // var newEnemy = Instantiate(spawnObject, GetSpawnPosition(), Quaternion.identity);
         enemyManager.GetEnemiesList.Add(newEnemy);
         yield return new WaitForSeconds(spawnInterval);

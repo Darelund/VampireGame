@@ -10,7 +10,7 @@ public class Rotatable : MonoBehaviour
     protected virtual void Awake()
     {
         if (owner == CharacterType.NonPlayer)
-            target = GameObject.Find("Player");
+            target = GameManager.Instance.Player;
 
         Debug.Log(target == null);
     }
@@ -35,7 +35,6 @@ public class Rotatable : MonoBehaviour
         {
             var mouseInWorldSpace = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             var dir = (mouseInWorldSpace - transform.position);
-
 
             var angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
             transform.rotation = Quaternion.Euler(56.06f, 0, angle - 90); //I rotate character to this, it works. Magic numbers? Magically works

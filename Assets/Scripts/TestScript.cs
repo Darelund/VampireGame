@@ -2,10 +2,10 @@ using UnityEngine;
 
 public class TestScript : MonoBehaviour
 {
-    [SerializeField] private int intValue;
+    //[SerializeField] private int intValue;
 
     private void Awake()
     {
-        intValue = 20;
+      //  intValue = 20;
     }
 }

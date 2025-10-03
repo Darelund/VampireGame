@@ -104,4 +104,8 @@ public class EnemyController : MonoBehaviour
         rotatable.Rotate();
       //  enemyShooter.UpdateShooting();
     }
+    public void InitializeEnemy()
+    {
+        health.Init();
+    }
 }

@@ -7,6 +7,12 @@ public class PlayingState : State
     [SerializeField] private EnemySpawner enemySpawner;
     [SerializeField] private ProjectileManager projectileManager;
     [SerializeField] private WeaponManager weaponManager;
+    [SerializeField] private ObjectPoolManager objectPoolManager;
+
+    public override void EnterState()
+    {
+        objectPoolManager.InitializeAllPooles();
+    }
     public override void UpdateState()
     {
         base.UpdateState();

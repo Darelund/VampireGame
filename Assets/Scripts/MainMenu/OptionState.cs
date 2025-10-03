@@ -36,8 +36,8 @@ public class OptionState : State, ISaveable<GameSettings>
         gameSettings.VSyncEnabled = vsyncToggle.isOn;
 
 
-        gameSettings.MuteEnabled = soundManager.AudioSource.mute;
-        gameSettings.VolumeValue = soundManager.AudioSource.volume;
+        gameSettings.MuteEnabled = soundManager.BackgroundMusic.mute;
+        gameSettings.VolumeValue = soundManager.BackgroundMusic.volume;
 
     }
 
