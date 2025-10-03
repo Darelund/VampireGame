@@ -11,6 +11,8 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] private GameObject spawnObject;
 
     [SerializeField] private EnemyManager enemyManager;
+    [SerializeField] private ObjectPoolManager objectPoolManager;
+
 
 
     public void UpdateSpawner()
@@ -34,9 +36,21 @@ public class EnemySpawner : MonoBehaviour
     //    Instantiate(spawnObject, GetSpawnPosition(), Quaternion.identity);
     //}
    
+    //private IEnumerator SpawnCoroutine()
+    //{
+    //    var newEnemy = Instantiate(spawnObject, GetSpawnPosition(), Quaternion.identity);
+    //    enemyManager.GetEnemiesList.Add(newEnemy);
+    //    yield return new WaitForSeconds(spawnInterval);
+    //}
     private IEnumerator SpawnCoroutine()
     {
-        var newEnemy = Instantiate(spawnObject, GetSpawnPosition(), Quaternion.identity);
+        //Quick harsh solution
+        //int rndNumber = Random.Range(0, 2);
+        //string enemyToSpawn = rndNumber == 1 ? "Enemy1" : "Lyktgubbe";
+
+        var newEnemy = objectPoolManager.GetObjectPools["Lyktgubbe"].UsePool();
+        newEnemy.transform.position = GetSpawnPosition();
+       // var newEnemy = Instantiate(spawnObject, GetSpawnPosition(), Quaternion.identity);
         enemyManager.GetEnemiesList.Add(newEnemy);
         yield return new WaitForSeconds(spawnInterval);
     }

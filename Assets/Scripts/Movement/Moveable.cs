@@ -6,9 +6,12 @@ public abstract class Moveable : MonoBehaviour
     [SerializeField] private float speed;
 
 
-    protected void Awake()
+    protected void Start()
     {
-        target = GameManager.Instance.Player;
+        //Now this one is broke because I create enemies at the beginning at the scene instead of later
+        //I couldn't run this on start before because the Move/Update below runs before this ones Start
+        //But now I moved the creation to the beginning so it should be fine doing this in Start again
+        target = GameManager.Instance.Player; 
         Debug.Log(target == null);
     }
 

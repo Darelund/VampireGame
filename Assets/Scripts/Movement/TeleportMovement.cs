@@ -1,16 +1,31 @@
 using UnityEngine;
 
-public class TeleportMovement : MonoBehaviour
+public class TeleportMovement : Moveable
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
+    [SerializeField] private float teleportInterval = 5;
+    [SerializeField] private float teleportTimer;
+    [SerializeField] private float spawnRadius;
 
-    // Update is called once per frame
-    void Update()
+
+    protected override void Move()
     {
-        
+        base.Move();
+        RandomTeleport();
+    }
+    private void RandomTeleport()
+    {
+        teleportTimer += Time.deltaTime;
+        if(teleportTimer >= teleportInterval)
+        {
+            //Spawn
+            transform.position = GetNewPosition();
+            teleportTimer = 0;
+        }
+    }
+    private Vector2 GetNewPosition()
+    {
+        float newXPosition = Random.Range(transform.position.x - spawnRadius, transform.position.x + spawnRadius);
+        float newYPosition = Random.Range(transform.position.y - spawnRadius, transform.position.y + spawnRadius);
+        return new Vector2(newXPosition, newYPosition);
     }
 }
