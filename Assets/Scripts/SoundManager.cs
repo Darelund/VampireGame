@@ -20,8 +20,7 @@ public class SoundManager : MonoBehaviour
         }
     }
 
-   
-
+    //Right now enemies, player, etc...(maybe more in the future)
     //Master Volume, Music Volume, Effects Volume, UI Volume
 
     private void Awake()

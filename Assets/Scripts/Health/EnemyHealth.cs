@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class EnemyHealth : Damageable
 {
-    [SerializeField] private GameObject UpgradePointObj;
+    [SerializeField] private GameObject upgradePointObj;
+    [SerializeField] private GameObject dyingPrefab;
+
 
 
     public override void TakeDamage(float dmg)
@@ -13,9 +15,11 @@ public class EnemyHealth : Damageable
     }
     public override void Died()
     {
-        var upgradePoint = Instantiate(UpgradePointObj, transform.position, Quaternion.identity).GetComponent<UpgradePoint>();
+        var upgradePoint = Instantiate(upgradePointObj, transform.position, Quaternion.identity).GetComponent<UpgradePoint>();
+        Instantiate(dyingPrefab, transform.position, Quaternion.identity);
         upgradePoint.InitializeUpgradePoint(33);
         GameManager.Instance.IncreaseEnemyKilledScoreByOne();
+        GetComponent<ObjectToPool>().GiveBackToPool();
     }
 
 }

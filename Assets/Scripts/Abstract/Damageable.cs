@@ -6,6 +6,7 @@ public abstract class Damageable : MonoBehaviour
     [SerializeField] protected float currentHealth;
     [SerializeField] protected float maxHealth;
     [SerializeField] public event EventHandler<HealthChangedEventArgs> OnHealthChanged;
+    [SerializeField] public event Action OnDied;
 
     public bool IsAlive => currentHealth > 0;
 
@@ -32,6 +33,7 @@ public abstract class Damageable : MonoBehaviour
     {
         //Died :(
         //Destroy(transform.gameObject); 
+        OnDied?.Invoke();
     }
     public virtual void RecieveHealth(float hp)
     {
