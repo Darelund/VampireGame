@@ -5,13 +5,13 @@ public class ObjectPool : MonoBehaviour //Maybe make it generic
 {
     [SerializeField] protected int poolSize;
     [SerializeField] protected bool automaticallyExpandPoolSize;
-    [SerializeField] protected GameObject poolPrefab;
+    //[SerializeField] protected GameObject poolPrefab;
     [SerializeField] protected Transform poolParent;
 
     [SerializeField] private Factory<EnemyController> enemyFactory;
+    [SerializeField] private EnemyType enemyType;
 
-
-    protected Stack<GameObject> poolStack;
+    protected Stack<ObjectToPool> poolStack;
 
     //protected virtual void Awake()
     //{
@@ -19,30 +19,30 @@ public class ObjectPool : MonoBehaviour //Maybe make it generic
     //}
     public virtual void InitializePool()
     {
-        poolStack = new Stack<GameObject>();
+        poolStack = new Stack<ObjectToPool>();
 
         for (int i = 0; i < poolSize; i++)
         {
           //  int rndPick = Random.Range(0, poolPrefab.Length);
-            var instance = Instantiate(poolPrefab, poolParent);
+            var instance = enemyFactory.CreateEntity(enemyType).GetComponent<ObjectToPool>();
 
             instance.GetComponent<ObjectToPool>().Pool = this;
             poolStack.Push(instance);
-            instance.SetActive(false);
+            instance.gameObject.SetActive(false);
         }
 
 
     }
-    public virtual GameObject UsePool()
+    public virtual ObjectToPool UsePool()
     {
-        GameObject instance = null;
+        ObjectToPool instance = null;
         if(poolStack.Count == 0)
         {
             Debug.Log("Pool is empty");
             if(automaticallyExpandPoolSize)
             {
-               // int rndPick = Random.Range(0, poolPrefab.Length);
-                instance = Instantiate(poolPrefab, poolParent);
+                // int rndPick = Random.Range(0, poolPrefab.Length);
+                instance = Instantiate(enemyFactory.CreateEntity(enemyType), poolParent).GetComponent<ObjectToPool>();
                 instance.GetComponent<ObjectToPool>().Pool = this;
             }
             else
@@ -52,13 +52,13 @@ public class ObjectPool : MonoBehaviour //Maybe make it generic
                 return instance;
         }
         instance = poolStack.Pop();
-        instance.SetActive(true);
+        instance.gameObject.SetActive(true);
         return instance;
 
     }
     public virtual void GiveBackToPool(ObjectToPool instance)
     {
         instance.gameObject.SetActive(false);
-        poolStack.Push(instance.gameObject);
+        poolStack.Push(instance);
     }
 }

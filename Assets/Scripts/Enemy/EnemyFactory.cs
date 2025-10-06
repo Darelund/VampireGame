@@ -2,30 +2,31 @@ using UnityEngine;
 
 public class EnemyFactory : Factory<EnemyController>
 {
-    public Builder builder;
-    public GameObject prefab;
-   public enum EnemyType
-    {
-        RangeVätte,
-        MeleeVätte,
-        RangedLyktgubbe,
-        MeleeLyktgubbe
-    }
+    [SerializeField] private Builder builder;
+    [SerializeField] private GameObject[] enemyPrefabs;
+    [SerializeField] private GameObject[] weaponsPrefabs;
+    
 
     public override EnemyController CreateEntity(EnemyType enemyType)
     {
         EnemyController enemy = null;
-        builder.SetPrefab(prefab);
         switch (enemyType)
         {
             case EnemyType.RangeVätte:
-                //enemy = builder.AddMovement(new OrbitMovement);
+                builder.SetPrefab(enemyPrefabs[0]);
+                enemy = builder.AddMovement<OrbitMovement>().AddWeapon(weaponsPrefabs[0]).Build();
                 break;
             case EnemyType.MeleeVätte:
+                builder.SetPrefab(enemyPrefabs[0]);
+                enemy = builder.AddMovement<MoveTowardsMovement>().AddWeapon(weaponsPrefabs[0]).Build();
                 break;
             case EnemyType.RangedLyktgubbe:
+                builder.SetPrefab(enemyPrefabs[1]);
+                enemy = builder.AddMovement<OrbitMovement>().AddWeapon(weaponsPrefabs[1]).Build();
                 break;
             case EnemyType.MeleeLyktgubbe:
+                builder.SetPrefab(enemyPrefabs[1]);
+                enemy = builder.AddMovement<MoveTowardsMovement>().AddWeapon(weaponsPrefabs[1]).Build();
                 break;
             default:
                 break;
@@ -33,6 +34,13 @@ public class EnemyFactory : Factory<EnemyController>
 
 
 
-        return null;
+        return enemy;
     }
+}
+public enum EnemyType
+{
+    RangeVätte,
+    MeleeVätte,
+    RangedLyktgubbe,
+    MeleeLyktgubbe
 }

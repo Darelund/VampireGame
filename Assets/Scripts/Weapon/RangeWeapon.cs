@@ -50,8 +50,8 @@ public class RangeWeapon : BaseWeapon
             CreateAttackParticles();
         }
     }
-    private void CreateAttackParticles()
+    public override void CreateAttackParticles()
     {
-        var attackObj = Instantiate(AttackProjectilePrefab, target.position, Quaternion.identity, target.transform);
+       // var attackObj = Instantiate(AttackProjectilePrefab, target.position, Quaternion.identity, target.transform);
     }
 }

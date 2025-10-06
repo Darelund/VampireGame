@@ -6,9 +6,9 @@ public abstract class Builder : MonoBehaviour
 {
     private GameObject prefab;
     //private readonly List<Action<EnemyController>> buildsteps = new();
-    private Moveable moveable;
+    private Action<EnemyController> moveable;
 
-    private BaseWeapon weapon;
+    private GameObject weapon;
 
 
     public void SetPrefab(GameObject prefab)
@@ -31,30 +31,28 @@ public abstract class Builder : MonoBehaviour
     //}
     public Builder AddMovement<T>() where T : Moveable
     {
-        this.moveable = moveable;
+        moveable = (enemy => enemy.AddMovement<T>());
         return this;
     }
-    public Builder AddWeapon(BaseWeapon weapon)
+    public Builder AddWeapon(GameObject weaponPrefab)
     {
-        this.weapon = weapon;
+       weapon = weaponPrefab;
         return this;
     }
 
     public EnemyController Build()
     {
         GameObject newGameObject = Instantiate(prefab);
+        Instantiate(weapon, newGameObject.transform);
 
         EnemyController enemyController = newGameObject.GetComponent<EnemyController>();
+        moveable?.Invoke(enemyController);
 
         //foreach (var step in buildsteps)
         //{
         //    step?.Invoke(enemy);
         //}
         //return;
-        return null;
-    }
-    private void AddMoveComponent()
-    {
-
+        return enemyController;
     }
 }

@@ -1,16 +1,18 @@
 using UnityEngine;
 
-public class OrbitMovement : MonoBehaviour
+public class OrbitMovement : Moveable
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    [SerializeField] private float distance = 5f;
+    protected override void Move()
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        if(Vector2.Distance(transform.position, target.transform.position) > distance)
+        {
+            transform.position = Vector2.MoveTowards(transform.position, target.transform.position, speed * Time.deltaTime);
+        }
+        else
+        {
+            //TODO: ADD THE FUCKING CODE
+            Debug.Log("Basically go around in circles");
+        }
     }
 }

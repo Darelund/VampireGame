@@ -106,7 +106,11 @@ public class EnemyController : MonoBehaviour
         rotatable.Rotate();
       //  enemyShooter.UpdateShooting();
     }
-    public void InitializeEnemy()
+    public void AddMovement<T>() where T : Moveable
+    {
+       movement = gameObject.AddComponent<T>();
+    }
+    public void ResetEnemy()
     {
         health.Init();
     }

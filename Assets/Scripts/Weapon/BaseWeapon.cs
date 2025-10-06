@@ -40,5 +40,7 @@ public abstract class BaseWeapon : MonoBehaviour
 
 
     public abstract void Use();
-   
+    public abstract void CreateAttackParticles();
+
+
 }

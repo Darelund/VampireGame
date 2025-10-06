@@ -51,9 +51,11 @@ public class EnemySpawner : MonoBehaviour
         var newEnemy = objectPoolManager.GetObjectPools["Enemy1"].UsePool();
         if (newEnemy == null) yield return null;
         newEnemy.transform.position = GetSpawnPosition();
-        newEnemy.GetComponent<EnemyController>().InitializeEnemy();
+
+        //We don't create a new instance, we use an objectpool, so we need to reset the enemies stats
+        newEnemy.GetComponent<EnemyController>().ResetEnemy();
        // var newEnemy = Instantiate(spawnObject, GetSpawnPosition(), Quaternion.identity);
-        enemyManager.GetEnemiesList.Add(newEnemy);
+        enemyManager.GetEnemiesList.Add(newEnemy.gameObject);
         yield return new WaitForSeconds(spawnInterval);
     }
     private Vector2 GetSpawnPosition()
