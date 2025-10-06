@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class EnemyController : MonoBehaviour
 {
+    //https://sv.wikipedia.org/wiki/Lista_%C3%B6ver_varelser_i_nordisk_folktro
     //BaseEnemy
     //Farm
     //Vättar

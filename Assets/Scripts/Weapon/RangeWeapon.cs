@@ -31,7 +31,7 @@ public class RangeWeapon : BaseWeapon
             projectile.Init(normalizedDir, projSpeed);
             projectileObj.layer = 7; //Magic number, just make sure the projectile is on EnemyProjectile layer, so we know that this specific bullet is supposed to damage the player
             ProjectileManager.Instance.GetProjectileList.Add(projectileObj);
-           // CreateAttackParticles();
+            CreateAttackParticles();
         }
         else if (Input.GetKey(KeyCode.Mouse0)  && GetWeaponOwner == CharacterType.Player)
         {
@@ -52,6 +52,7 @@ public class RangeWeapon : BaseWeapon
     }
     public override void CreateAttackParticles()
     {
-       // var attackObj = Instantiate(AttackProjectilePrefab, target.position, Quaternion.identity, target.transform);
+       Instantiate(AttackProjectilePrefab, target.position, Quaternion.identity, target.transform);
+       SoundManager.Instance.PlayRandomSoundFromSoundData("RangeWeapon");
     }
 }

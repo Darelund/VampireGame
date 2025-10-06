@@ -6929,6 +6929,10 @@ PrefabInstance:
       propertyPath: cooldown
       value: 0.3
       objectReference: {fileID: 0}
+    - target: {fileID: 4429803940029585487, guid: c4e6f8aba383aee40b5bf671b2fda4d7, type: 3}
+      propertyPath: projectilePrefab
+      value: 
+      objectReference: {fileID: 5430049374541619485, guid: f8251e26eead32d489db48dca38b888b, type: 3}
     - target: {fileID: 6388393428351026052, guid: c4e6f8aba383aee40b5bf671b2fda4d7, type: 3}
       propertyPath: m_Name
       value: Player

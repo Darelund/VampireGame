@@ -57,7 +57,7 @@ public class SoundManager : MonoBehaviour
     }
     public void ChangeVolume(float newVolume) => backgroundMusic.volume = newVolume;
 
-
+    //Should I use Play or PlayOneShot? If many enemies call the same AudioSource maybe I should use PlayOneShot
     public void PlaySound(string SoundDataOwner, string audioClip)
     {
         if(soundDictionary.ContainsKey(SoundDataOwner))
@@ -66,6 +66,24 @@ public class SoundManager : MonoBehaviour
             if(audioClipToPlay != null)
             {
                 if(soundDictionary[SoundDataOwner].AudioSource.isPlaying)
+                {
+                    //Should I do something if it is already playing? What happens with the previous audio if I change the clip and play the new one
+                    //before the previous one is done? Does the new one get queued or override the old one?
+                }
+                soundDictionary[SoundDataOwner].AudioSource.clip = audioClipToPlay;
+                soundDictionary[SoundDataOwner].AudioSource.Play();
+            }
+        }
+    }
+    public void PlayRandomSoundFromSoundData(string SoundDataOwner)
+    {
+        if (soundDictionary.ContainsKey(SoundDataOwner))
+        {
+            var soundIndex = UnityEngine.Random.Range(0, soundDictionary[SoundDataOwner].Clips.Count);
+            var audioClipToPlay = soundDictionary[SoundDataOwner].Clips[soundIndex];
+            if (audioClipToPlay != null)
+            {
+                if (soundDictionary[SoundDataOwner].AudioSource.isPlaying)
                 {
                     //Should I do something if it is already playing? What happens with the previous audio if I change the clip and play the new one
                     //before the previous one is done? Does the new one get queued or override the old one?

@@ -47,6 +47,20 @@ public class PlayerUpgrade : MonoBehaviour
 
         UpdateUpgradeBar(currentExperiencePoints, levelUps[currentLevel + 1].ExperiencePoints);
     }
+
+    private void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.E))
+        {
+            currentExperiencePoints += 10;
+            if (CanReachNextLevel())
+            {
+                ReachedNextLevel();
+            }
+            int nextLevelIndex = currentLevel + 1;
+            UpdateUpgradeBar(currentExperiencePoints, levelUps[nextLevelIndex].ExperiencePoints);
+        }
+    }
     private void CreateAbilityUpgrades()
     {
         abilityUpgrades = new Dictionary<string, PlayerStat>()
@@ -61,24 +75,47 @@ public class PlayerUpgrade : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        var upgradePoint = collision.GetComponent<UpgradePoint>();
+        if (CheckIfUpgrade(collision, out UpgradePoint upgradePoint))
+        {
+            AddExperiencePoints(upgradePoint);
+            if(CanReachNextLevel())
+            {
+                ReachedNextLevel();
+            }
+            int nextLevelIndex = currentLevel + 1;
+            UpdateUpgradeBar(currentExperiencePoints, levelUps[nextLevelIndex].ExperiencePoints);
+        }
+    }
+    private bool CheckIfUpgrade(Collider2D collision, out UpgradePoint upgradePoint)
+    {
+        upgradePoint = collision.GetComponent<UpgradePoint>();
+        return (upgradePoint == null);
+    }
+    private void AddExperiencePoints(UpgradePoint upgradePoint)
+    {
         if (upgradePoint != null)
         {
             currentExperiencePoints += upgradePoint.GetPoints();
             VisualManager.Instance.SpawnText($"{upgradePoint.GetPoints()}+", transform.position, TextType.Normal, Color.darkGoldenRod);
             Destroy(upgradePoint.gameObject);
         }
-        if(currentExperiencePoints >= levelUps[currentLevel + 1].ExperiencePoints)
-        {
-            currentLevel++;
-            totalExperiencePoints += currentExperiencePoints;
-            currentExperiencePoints = 0; //We want the slider to go back to zero. I am not sure if we should reset it to 0. We probably want it to keep its experience points
-            VisualManager.Instance.SpawnText($"LVL: {currentLevel} REACHED!", Vector2.zero, TextType.LvlUp, Color.darkGoldenRod);
-            GameManager.Instance.SwitchState<UpgradeState>();
-        }
-        UpdateUpgradeBar(currentExperiencePoints, levelUps[currentLevel + 1].ExperiencePoints);
     }
-    
+
+    private bool CanReachNextLevel()
+    {
+        int nextLevelIndex = currentLevel + 1;
+        return (currentExperiencePoints >= levelUps[nextLevelIndex].ExperiencePoints);
+    }
+    private void ReachedNextLevel()
+    {
+        currentLevel++;
+        totalExperiencePoints += currentExperiencePoints;
+        currentExperiencePoints = 0; //We want the slider to go back to zero. I am not sure if we should reset it to 0. We probably want it to keep its experience points
+                                     //VisualManager.Instance.SpawnText($"LVL: {currentLevel} REACHED!", Vector2.zero, TextType.LvlUp, Color.darkGoldenRod);
+        GameManager.Instance.SwitchState<UpgradeState>();
+        SoundManager.Instance.PlaySound("LevelUp", "FantasyLevelUpSound");
+    }
+
 }
 [System.Serializable]
 public class Level

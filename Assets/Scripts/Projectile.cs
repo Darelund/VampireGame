@@ -48,10 +48,12 @@ public class Projectile : Damageable
         }
         DestroyItself();
     }
+    //TODO:Probably want to integrate this into an object pool
     private void DestroyItself()
     {
         currentHealth = 0;
         visuals.SetActive(false);
         Instantiate(destroyedParticle, transform.position, Quaternion.identity);
+        SoundManager.Instance.PlayRandomSoundFromSoundData("Projectile");
     }
 }
