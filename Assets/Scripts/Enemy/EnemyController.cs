@@ -6,12 +6,14 @@ public class EnemyController : MonoBehaviour
     //Farm
     //Vättar
     //Gårdstomtar(farmyard gnomes)
+    //Mara
 
     //Forest
     //Skogsrået
     //Troll
     //Älvor
     //Bysen
+    //Myling
 
     //Water
     //Näcken

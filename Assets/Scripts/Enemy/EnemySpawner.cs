@@ -48,7 +48,7 @@ public class EnemySpawner : MonoBehaviour
         //int rndNumber = Random.Range(0, 2);
         //string enemyToSpawn = rndNumber == 1 ? "Enemy1" : "Lyktgubbe";
 
-        var newEnemy = objectPoolManager.GetObjectPools["Lyktgubbe"].UsePool();
+        var newEnemy = objectPoolManager.GetObjectPools["Enemy1"].UsePool();
         if (newEnemy == null) yield return null;
         newEnemy.transform.position = GetSpawnPosition();
         newEnemy.GetComponent<EnemyController>().InitializeEnemy();

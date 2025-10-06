@@ -29,7 +29,7 @@ public class Rotatable : MonoBehaviour
         {
             var playerDir = (target.transform.position - transform.position).normalized;
             var angle = Mathf.Atan2(playerDir.y, playerDir.x) * Mathf.Rad2Deg;
-            transform.rotation = Quaternion.Euler(0, 0, angle);
+            transform.rotation = Quaternion.Euler(45f, 0, angle - 90);
         }
         else if (owner == CharacterType.Player)
         {
@@ -37,7 +37,9 @@ public class Rotatable : MonoBehaviour
             var dir = (mouseInWorldSpace - transform.position);
 
             var angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
-            transform.rotation = Quaternion.Euler(56.06f, 0, angle - 90); //I rotate character to this, it works. Magic numbers? Magically works
+            transform.rotation = Quaternion.Euler(45f, 0, angle - 90); //I rotate character to this, it works. Magic numbers? Magically works
+           // transform.rotation = Quaternion.Euler(0, 0, angle); //I rotate character to this, it works. Magic numbers? Magically works
+
         }
     }
 }

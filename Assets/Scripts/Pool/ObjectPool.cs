@@ -8,7 +8,7 @@ public class ObjectPool : MonoBehaviour //Maybe make it generic
     [SerializeField] protected GameObject poolPrefab;
     [SerializeField] protected Transform poolParent;
 
-
+    [SerializeField] private Factory<EnemyController> enemyFactory;
 
 
     protected Stack<GameObject> poolStack;
