@@ -1,45 +1,47 @@
 using UnityEngine;
 
-public class Rotatable : MonoBehaviour
+public class Rotatable : Attribute
 {
-    private GameObject target;
-    [SerializeField] private CharacterType owner;
-    public CharacterType GetOwner => owner;
+    private GameObject _target;
+    private CharacterType _owner;
 
-
-    protected virtual void Awake()
+    public Rotatable()
     {
-        if (owner == CharacterType.NonPlayer)
-            target = GameManager.Instance.Player;
+        _owner = CharacterType.NonPlayer;
 
-        Debug.Log(target == null);
+        if (_owner == CharacterType.NonPlayer)
+            _target = GameManager.Instance.Player;
+
     }
-    public void Rotate()
+    public override void UpdateAttribute(GameObject gameObject)
     {
-        LookAt();
+        LookAt(gameObject);
     }
-    protected virtual void LookAt()
+   
+    protected virtual void LookAt(GameObject gameObject)
     {
-        if (target == null && owner == CharacterType.NonPlayer)
+        if (_target == null && _owner == CharacterType.NonPlayer)
         {
             Debug.Log("AM I THE NULL ONE? Rotatable");
         }
 
-        if (owner == CharacterType.NonPlayer)
+        if (_owner == CharacterType.NonPlayer)
         {
-            var playerDir = (target.transform.position - transform.position).normalized;
+            var playerDir = (_target.transform.position - gameObject.transform.position).normalized;
             var angle = Mathf.Atan2(playerDir.y, playerDir.x) * Mathf.Rad2Deg;
-            transform.rotation = Quaternion.Euler(45f, 0, angle - 90);
+            gameObject.transform.rotation = Quaternion.Euler(45f, 0, angle - 90);
         }
-        else if (owner == CharacterType.Player)
+        else if (_owner == CharacterType.Player)
         {
             var mouseInWorldSpace = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            var dir = (mouseInWorldSpace - transform.position);
+            var dir = (mouseInWorldSpace - gameObject.transform.position);
 
             var angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
-            transform.rotation = Quaternion.Euler(45f, 0, angle - 90); //I rotate character to this, it works. Magic numbers? Magically works
+            gameObject.transform.rotation = Quaternion.Euler(45f, 0, angle - 90); //I rotate character to this, it works. Magic numbers? Magically works
            // transform.rotation = Quaternion.Euler(0, 0, angle); //I rotate character to this, it works. Magic numbers? Magically works
 
         }
     }
+
+   
 }

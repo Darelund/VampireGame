@@ -2,30 +2,44 @@ using UnityEngine;
 
 public class TeleportMovement : Moveable
 {
-    [SerializeField] private float teleportInterval = 5;
-    [SerializeField] private float teleportTimer;
-    [SerializeField] private float spawnRadius;
+    private float _teleportInterval;
+    private float _teleportTimer;
+    private float _spawnRadius;
 
 
-    protected override void Move()
+    public TeleportMovement() : base()
     {
-        base.Move();
-        RandomTeleport();
+        _teleportInterval = RandomSpawnInterval();
+
+        _spawnRadius = 10;
     }
-    private void RandomTeleport()
+    private int RandomSpawnInterval()
     {
-        teleportTimer += Time.deltaTime;
-        if(teleportTimer >= teleportInterval)
+        int lowestSpawnInterval = 5;
+        int highestSpawnInterval = 12;
+
+        return Random.Range(lowestSpawnInterval, highestSpawnInterval + 1);
+    }
+
+    protected override void Move(GameObject gameObject)
+    {
+        base.Move(gameObject);
+        RandomTeleport(gameObject);
+    }
+    private void RandomTeleport(GameObject gameObject)
+    {
+        _teleportTimer += Time.deltaTime;
+        if(_teleportTimer >= _teleportInterval)
         {
-            //Spawn
-            transform.position = GetNewPosition();
-            teleportTimer = 0;
+            _teleportInterval = RandomSpawnInterval();
+            gameObject.transform.position = GetNewPosition(gameObject);
+            _teleportTimer = 0;
         }
     }
-    private Vector2 GetNewPosition()
+    private Vector2 GetNewPosition(GameObject gameObject)
     {
-        float newXPosition = Random.Range(transform.position.x - spawnRadius, transform.position.x + spawnRadius);
-        float newYPosition = Random.Range(transform.position.y - spawnRadius, transform.position.y + spawnRadius);
+        float newXPosition = Random.Range(gameObject.transform.position.x - _spawnRadius, gameObject.transform.position.x + _spawnRadius);
+        float newYPosition = Random.Range(gameObject.transform.position.y - _spawnRadius, gameObject.transform.position.y + _spawnRadius);
         return new Vector2(newXPosition, newYPosition);
     }
 }

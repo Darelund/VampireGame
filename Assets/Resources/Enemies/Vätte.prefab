@@ -192,8 +192,6 @@ GameObject:
   - component: {fileID: 1086782183016703215}
   - component: {fileID: -8200076686487164073}
   - component: {fileID: -8261710014331415859}
-  - component: {fileID: 5175391270830954258}
-  - component: {fileID: 4091532295787802216}
   - component: {fileID: -5930808853895813088}
   m_Layer: 0
   m_Name: "V\xE4tte"
@@ -231,8 +229,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 27c5343a343a41f4086b8ba7b89a65c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BaseEnemy
-  movement: {fileID: 5175391270830954258}
-  rotatable: {fileID: 4091532295787802216}
   health: {fileID: -8261710014331415859}
 --- !u!58 &-8200076686487164073
 CircleCollider2D:
@@ -286,33 +282,6 @@ MonoBehaviour:
   maxHealth: 100
   upgradePointObj: {fileID: 8268766501368687321, guid: d9b4dd97851e9364c8b7627b79f1ed36, type: 3}
   dyingPrefab: {fileID: 6693746713826099328, guid: a734f161d4468d44caf1e1a72f3cd109, type: 3}
---- !u!114 &5175391270830954258
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7841204320835765149}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 834df1c54f7518040ab42e87d677091a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::MoveTowardsMovement
-  target: {fileID: 0}
-  speed: 5
---- !u!114 &4091532295787802216
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7841204320835765149}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 759df439315dcc3488ecb38ab1c563e9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Rotatable
-  owner: 1
 --- !u!114 &-5930808853895813088
 MonoBehaviour:
   m_ObjectHideFlags: 0

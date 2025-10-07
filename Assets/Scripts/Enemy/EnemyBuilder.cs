@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class EnemyBuilder : Builder
+public class EnemyBuilder : Builder<EnemyController>
 {
-   
+    //Maybe will have to use
 }

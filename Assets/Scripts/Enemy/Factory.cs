@@ -1,8 +1,18 @@
 using UnityEngine;
 
-public abstract class Factory<T> : MonoBehaviour
+public class Factory<T> where T : IAttributable, new()
 {
-    [SerializeField] protected GameObject poolPrefab;
-   // [SerializeField] protected EnemyBuilder poolPrefab;
-    public abstract T CreateEntity(EnemyType enemyType);
+    public Builder<T> builder;
+   // private EnemyStrategy enemyStrategy;
+
+    public Factory()
+    {
+        builder = new Builder<T>();
+        //this.enemyStrategy = enemyStrategy;
+        //builder.SetPrefab(enemyStrategy.EnemyPrefab);
+    }
+    public void CreateEntity()
+    {
+
+    }
 }

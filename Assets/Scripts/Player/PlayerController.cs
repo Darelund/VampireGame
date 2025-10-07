@@ -6,7 +6,7 @@ public class PlayerController : MonoBehaviour, ISaveable
 {
 
     [SerializeField] private PlayerMovement playerMovement;
-    [SerializeField] private Rotatable rotater;
+    [SerializeField] private PlayerRotater rotater;
     //[SerializeField] private BaseWeapon playerShooter;
     [SerializeField] private CameraFollow cameraFollow;
     [SerializeField] private PlayerHealth playerHealth;

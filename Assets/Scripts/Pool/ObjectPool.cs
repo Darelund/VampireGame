@@ -8,8 +8,9 @@ public class ObjectPool : MonoBehaviour //Maybe make it generic
     //[SerializeField] protected GameObject poolPrefab;
     [SerializeField] protected Transform poolParent;
 
+    [SerializeField] private string enemyToSpawn; //Should I really use a string?... No... But I love strings.
     [SerializeField] private EnemyFactory enemyFactory;
-    [SerializeField] private EnemyType enemyType;
+    //[SerializeField] private EnemyType enemyType;
 
     protected Stack<ObjectToPool> poolStack;
 
@@ -24,7 +25,7 @@ public class ObjectPool : MonoBehaviour //Maybe make it generic
         for (int i = 0; i < poolSize; i++)
         {
           //  int rndPick = Random.Range(0, poolPrefab.Length);
-            var instance = enemyFactory.CreateEntity(enemyType).GetComponent<ObjectToPool>();
+            var instance = enemyFactory.enemies[enemyToSpawn]?.Invoke().GetComponent<ObjectToPool>();
             instance.gameObject.transform.SetParent(poolParent, false);
 
             instance.GetComponent<ObjectToPool>().Pool = this;
@@ -43,7 +44,7 @@ public class ObjectPool : MonoBehaviour //Maybe make it generic
             if(automaticallyExpandPoolSize)
             {
                 // int rndPick = Random.Range(0, poolPrefab.Length);
-                instance = Instantiate(enemyFactory.CreateEntity(enemyType), poolParent).GetComponent<ObjectToPool>();
+                instance = enemyFactory.enemies[enemyToSpawn]?.Invoke().GetComponent<ObjectToPool>();
                 instance.GetComponent<ObjectToPool>().Pool = this;
             }
             else

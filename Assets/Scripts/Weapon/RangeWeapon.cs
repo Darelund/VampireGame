@@ -5,7 +5,7 @@ public class RangeWeapon : BaseWeapon
     [SerializeField] private GameObject projectilePrefab;
     [SerializeField] private GameObject AttackProjectilePrefab;
 
-    [SerializeField] private Transform target; //Right now its the target of enemy movement... how to change
+    [SerializeField] private Transform target; 
 
 
     protected void Start()

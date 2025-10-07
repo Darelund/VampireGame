@@ -1,6 +1,7 @@
+using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyController : MonoBehaviour
+public class EnemyController : MonoBehaviour, IAttributable
 {
     //https://sv.wikipedia.org/wiki/Lista_%C3%B6ver_varelser_i_nordisk_folktro
     //BaseEnemy
@@ -94,25 +95,31 @@ public class EnemyController : MonoBehaviour
     //New Solution
 
 
-    [SerializeField] private Moveable movement;
-    [SerializeField] private Rotatable rotatable;
-    //[SerializeField] private EnemyShooter enemyShooter; //Moved to its own class
-    [SerializeField] private EnemyHealth health; // Still here, should it still be here? We should only move if alive, but if we are dead then its deactivated and will be in the ObjectPool
-    //So it won't Update regardless, right? Eh I will just leave it.
+    private readonly List<Attribute> _attributes = new();
+    [SerializeField] private EnemyHealth health;
 
     public void UpdateEnemy()
     {
         if (!health.IsAlive) return;
-        movement.UpdateMovement();
-        rotatable.Rotate();
-      //  enemyShooter.UpdateShooting();
+        foreach (var attribute in _attributes)
+        {
+            attribute.UpdateAttribute(gameObject);
+        }
     }
-    public void AddMovement<T>() where T : Moveable
-    {
-       movement = gameObject.AddComponent<T>();
-    }
+    
     public void ResetEnemy()
     {
         health.Init();
+    }
+
+    public void AddScriptAttribute<T>() where T : Attribute, new()
+    {
+        _attributes.Add(new T());
+    }
+
+    public void AddPrefabAttribute(GameObject prefab)
+    {
+        //TODO: Add gameobject
+        Instantiate(prefab, transform);
     }
 }

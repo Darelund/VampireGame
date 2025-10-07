@@ -1,36 +1,19 @@
 using UnityEngine;
 
-public abstract class Moveable : MonoBehaviour
+public abstract class Moveable : Attribute
 {
-    [SerializeField] protected GameObject target;
-    [SerializeField] protected float speed = 5;
-
-
-    protected virtual void Awake()
+     protected GameObject target;
+     protected float speed = 5;
+    public Moveable()
     {
-        //Now this one is broke because I create enemies at the beginning at the scene instead of later
-        //I couldn't run this on start before because the Move/Update below runs before this ones Start
-        //But now I moved the creation to the beginning so it should be fine doing this in Start again
-        target = GameManager.Instance.Player; 
-        Debug.Log(target == null);
+        this.target = GameManager.Instance.Player; 
     }
-
-    public void UpdateMovement()
+    public override void UpdateAttribute(GameObject gameObject)
     {
-        Move();
+        Move(gameObject);
     }
-    protected virtual void Move()
+    protected virtual void Move(GameObject gameObject)
     {
-        if(target == null)
-        {
-            Debug.Log("AM I THE NULL ONE?");
-            Debug.LogFormat("{0}: [Event] called on {1}'s {2} at {3}",
-                 Time.frameCount,
-                 name,
-                 this.GetType().Name,
-                 Time.time);
-        }
-        
-        transform.position = Vector2.MoveTowards(transform.position, target.transform.position, speed * Time.deltaTime);
+        gameObject.transform.position = Vector2.MoveTowards(gameObject.transform.position, target.transform.position, speed * Time.deltaTime);
     }
 }

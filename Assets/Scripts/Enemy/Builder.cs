@@ -2,57 +2,33 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class Builder : MonoBehaviour
+public class Builder<T> where T : IAttributable
 {
     private GameObject prefab;
-    //private readonly List<Action<EnemyController>> buildsteps = new();
-    private Action<EnemyController> moveable;
-
-    private GameObject weapon;
-
+    private readonly List<Action<T>> buildSteps = new();
 
     public void SetPrefab(GameObject prefab)
     {
         this.prefab = prefab;
     }
-    //public Builder WithAttribute<T>() where T: EnemyAttribute
-    //{
-    //    buildsteps.Add(enemy => enemy.AddAttribute<T>());
-    //        return this;
-    //}
-    //public EnemyController Build()
-    //{
-    //    Enemy enemy = Instantiate(prefab).GetComponent<Enemy>();
-    //    foreach (var step in buildsteps)
-    //    {
-    //        step?.Invoke(enemy);
-    //    }
-    //    return;
-    //}
-    public Builder AddMovement<T>() where T : Moveable
+
+    public virtual Builder<T> WithScriptAttribute<TAttribute>() where TAttribute : Attribute, new()
     {
-        moveable = (enemy => enemy.AddMovement<T>());
+        buildSteps.Add(a => a.AddScriptAttribute<TAttribute>());
         return this;
     }
-    public Builder AddWeapon(GameObject weaponPrefab)
+    public virtual Builder<T> WithPrefabAttribute(GameObject prefab)
     {
-       weapon = weaponPrefab;
+        buildSteps.Add(a => a.AddPrefabAttribute(prefab));
         return this;
     }
-
-    public EnemyController Build()
+    public virtual T Build()
     {
-        GameObject newGameObject = Instantiate(prefab);
-        Instantiate(weapon, newGameObject.transform);
-
-        EnemyController enemyController = newGameObject.GetComponent<EnemyController>();
-        moveable?.Invoke(enemyController);
-
-        //foreach (var step in buildsteps)
-        //{
-        //    step?.Invoke(enemy);
-        //}
-        //return;
-        return enemyController;
+        T instance = GameObject.Instantiate(prefab).GetComponent<T>();
+        foreach (var step in buildSteps)
+        {
+            step?.Invoke(instance);
+        }
+        return instance;
     }
 }
