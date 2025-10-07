@@ -81,4 +81,5 @@ MonoBehaviour:
   canUse: 0
   weaponOwner: 1
   projectilePrefab: {fileID: 5430049374541619485, guid: 3abf2715e90deda40829ce4055e1f646, type: 3}
+  AttackProjectilePrefab: {fileID: 2313984966486234250, guid: 5a96eaf5e784c664abcc235f8142a768, type: 3}
   target: {fileID: 0}

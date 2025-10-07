@@ -8,7 +8,7 @@ public class ObjectPool : MonoBehaviour //Maybe make it generic
     //[SerializeField] protected GameObject poolPrefab;
     [SerializeField] protected Transform poolParent;
 
-    [SerializeField] private Factory<EnemyController> enemyFactory;
+    [SerializeField] private EnemyFactory enemyFactory;
     [SerializeField] private EnemyType enemyType;
 
     protected Stack<ObjectToPool> poolStack;
@@ -25,6 +25,7 @@ public class ObjectPool : MonoBehaviour //Maybe make it generic
         {
           //  int rndPick = Random.Range(0, poolPrefab.Length);
             var instance = enemyFactory.CreateEntity(enemyType).GetComponent<ObjectToPool>();
+            instance.gameObject.transform.SetParent(poolParent, false);
 
             instance.GetComponent<ObjectToPool>().Pool = this;
             poolStack.Push(instance);

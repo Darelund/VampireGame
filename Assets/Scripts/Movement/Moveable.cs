@@ -3,7 +3,7 @@ using UnityEngine;
 public abstract class Moveable : MonoBehaviour
 {
     [SerializeField] protected GameObject target;
-    [SerializeField] protected float speed;
+    [SerializeField] protected float speed = 5;
 
 
     protected virtual void Awake()

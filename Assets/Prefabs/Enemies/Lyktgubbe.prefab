@@ -125,7 +125,6 @@ GameObject:
   - component: {fileID: -8200076686487164073}
   - component: {fileID: -8261710014331415859}
   - component: {fileID: 4091532295787802216}
-  - component: {fileID: 3225344228323597430}
   - component: {fileID: 4043194360170578492}
   - component: {fileID: 4542717954966585848}
   - component: {fileID: 7753306122845469325}
@@ -164,7 +163,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 27c5343a343a41f4086b8ba7b89a65c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BaseEnemy
-  movement: {fileID: 3225344228323597430}
+  movement: {fileID: 0}
   rotatable: {fileID: 4091532295787802216}
   health: {fileID: -8261710014331415859}
 --- !u!58 &-8200076686487164073
@@ -232,23 +231,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Rotatable
   owner: 1
---- !u!114 &3225344228323597430
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7841204320835765149}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6b1e539c9a28b324a98e69402be19436, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::TeleportMovement
-  target: {fileID: 0}
-  speed: 5
-  teleportInterval: 5
-  teleportTimer: 0
-  spawnRadius: 20
 --- !u!114 &4043194360170578492
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -31,7 +31,7 @@ public class RangeWeapon : BaseWeapon
             projectile.Init(normalizedDir, projSpeed);
             projectileObj.layer = 7; //Magic number, just make sure the projectile is on EnemyProjectile layer, so we know that this specific bullet is supposed to damage the player
             ProjectileManager.Instance.GetProjectileList.Add(projectileObj);
-            CreateAttackParticles();
+           // CreateAttackParticles();
         }
         else if (Input.GetKey(KeyCode.Mouse0)  && GetWeaponOwner == CharacterType.Player)
         {
