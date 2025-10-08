@@ -27,7 +27,7 @@ public class SoundManager : MonoBehaviour
     {
         if (instance != null) Destroy(gameObject);
         instance = this;
-        DontDestroyOnLoad(gameObject);
+        //DontDestroyOnLoad(gameObject);
         InitSounds();
     }
     private void InitSounds()

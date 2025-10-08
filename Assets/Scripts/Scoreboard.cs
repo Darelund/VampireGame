@@ -23,7 +23,7 @@ public class Scoreboard : MonoBehaviour
     {
         if(_gameData == null)
         {
-            Debug.LogError("GameData was null for some reason, therefore I can't display the scoreboard");
+            Debug.Log("GameData was null(Either no score has been saved or something went wrong), therefore I can't display the scoreboard");
             return;
         }
 

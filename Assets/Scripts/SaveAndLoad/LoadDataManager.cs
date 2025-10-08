@@ -32,7 +32,6 @@ public class LoadDataManager : MonoBehaviour
         instance = this;
         _fileSaver = new JsonSaver<GameData>();
         saveableElements = GameObject.FindObjectsByType<MonoBehaviour>(FindObjectsInactive.Exclude, FindObjectsSortMode.None).OfType<ISaveable<GameData>>().ToList();
-        gameData = new GameData();
         LoadGameData();
         Application.quitting += Application_quitting;
     }
@@ -63,5 +62,11 @@ public class LoadDataManager : MonoBehaviour
     public void LoadGameData()
     {
         gameData = _fileSaver.Load();
+        if (gameData == null)
+        {
+            //If this is the first time you open the game than no gamedata will exist, therefor we need to create a new GameData
+            gameData = new GameData();
+        }
+
     }
 }

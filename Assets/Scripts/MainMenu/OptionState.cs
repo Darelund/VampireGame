@@ -60,23 +60,7 @@ public class OptionState : State, ISaveable<GameSettings>
         SetActivePanel(0);
     }
 
-    private void InitializeOptions(GameSettings gameSettings)
-    {
-        fullscreenToggle.isOn = gameSettings.FullscreenEnabled;
-        //Screen.fullScreen = _gameSettings.FullscreenEnabled;
-
-        SetFPS();
-
-        vsyncToggle.isOn = gameSettings.VSyncEnabled;
-        //QualitySettings.vSyncCount = (_gameSettings.VSyncEnabled ? 1 : 0);
-
-        muteToggle.isOn = gameSettings.MuteEnabled;
-        soundManager.ToggleMute(gameSettings.MuteEnabled);
-
-        volumeTextValue.text = $"{gameSettings.VolumeValue * 100}";
-        volumeSlider.value = gameSettings.VolumeValue;
-       // soundManager.ChangeVolume(gameSettings.VolumeValue);
-    }
+   
     public void SetFullscreen()
     {
         Screen.fullScreen = fullscreenToggle.isOn;
@@ -94,7 +78,7 @@ public class OptionState : State, ISaveable<GameSettings>
     public void SetVolume()
     {
         //volumeSlider.value = _gameSettings.VolumeValue;
-        volumeTextValue.text = $"{volumeSlider.value * 100:000}";
+        volumeTextValue.text = $"{volumeSlider.value * 100:###}";
         soundManager.ChangeVolume(volumeSlider.value);
     }
 
@@ -105,5 +89,22 @@ public class OptionState : State, ISaveable<GameSettings>
     public void Load(GameSettings data)
     {
         InitializeOptions(data);
+    }
+    private void InitializeOptions(GameSettings gameSettings)
+    {
+        fullscreenToggle.isOn = gameSettings.FullscreenEnabled;
+        //Screen.fullScreen = _gameSettings.FullscreenEnabled;
+
+        SetFPS();
+
+        vsyncToggle.isOn = gameSettings.VSyncEnabled;
+        //QualitySettings.vSyncCount = (_gameSettings.VSyncEnabled ? 1 : 0);
+
+        muteToggle.isOn = gameSettings.MuteEnabled;
+        soundManager.ToggleMute(gameSettings.MuteEnabled);
+
+        volumeTextValue.text = $"{gameSettings.VolumeValue * 100}";
+        volumeSlider.value = gameSettings.VolumeValue;
+        // soundManager.ChangeVolume(gameSettings.VolumeValue);
     }
 }

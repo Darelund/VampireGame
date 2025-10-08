@@ -30,7 +30,11 @@ public class SettingsManager : MonoBehaviour
     }
     private void LoadSavedSettings()
     {
-        
+        //If no settings was found then we will use the default settings
+        if(_gameSettings == null)
+        {
+            _gameSettings = new GameSettings();
+        }
         foreach (var element in saveableElements)
         {
             element.Load(GameSettings);
