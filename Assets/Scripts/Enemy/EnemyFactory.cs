@@ -19,25 +19,25 @@ public class EnemyFactory : MonoBehaviour
             {
                 Factory<EnemyController> enemyFactory = new();
                 enemyFactory.builder.SetPrefab(Resources.Load<EnemyController>("Enemies/Vätte").gameObject);
-                return enemyFactory.builder.WithScriptAttribute<OrbitMovement>().WithPrefabAttribute(Resources.Load<GameObject>("Weapons/RangedWeapon")).Build();
+                return enemyFactory.builder.WithScriptAttribute<OrbitMovement>().WithScriptAttribute<Rotatable>().WithPrefabAttribute(Resources.Load<GameObject>("Weapons/RangedWeapon")).Build();
             },
             ["MeleeVätte"] = () =>
             {
                 Factory<EnemyController> enemyFactory = new();
                 enemyFactory.builder.SetPrefab(Resources.Load<EnemyController>("Enemies/Vätte").gameObject);
-                return enemyFactory.builder.WithScriptAttribute<MoveTowardsMovement>().WithPrefabAttribute(Resources.Load<GameObject>("Weapons/RangedWeapon").gameObject).Build();
+                return enemyFactory.builder.WithScriptAttribute<MoveTowardsMovement>().WithScriptAttribute<Rotatable>().WithPrefabAttribute(Resources.Load<GameObject>("Weapons/RangedWeapon").gameObject).Build();
             },
             ["RangedLyktgubbe"] = () =>
             {
                 Factory<EnemyController> enemyFactory = new();
                 enemyFactory.builder.SetPrefab(Resources.Load<EnemyController>("Enemies/Lyktgubbe").gameObject);
-                return enemyFactory.builder.WithScriptAttribute<OrbitMovement>().WithPrefabAttribute(Resources.Load<GameObject>("Weapons/RangedWeapon").gameObject).Build();
+                return enemyFactory.builder.WithScriptAttribute<OrbitMovement>().WithScriptAttribute<Rotatable>().WithPrefabAttribute(Resources.Load<GameObject>("Weapons/RangedWeapon").gameObject).Build();
             },
             ["RangedLyktgubbe"] = () =>
             {
                 Factory<EnemyController> enemyFactory = new();
                 enemyFactory.builder.SetPrefab(Resources.Load<EnemyController>("Enemies/Lyktgubbe").gameObject);
-                return enemyFactory.builder.WithScriptAttribute<MoveTowardsMovement>().WithPrefabAttribute(Resources.Load<GameObject>("Weapons/RangedWeapon").gameObject).Build();
+                return enemyFactory.builder.WithScriptAttribute<MoveTowardsMovement>().WithScriptAttribute<Rotatable>().WithPrefabAttribute(Resources.Load<GameObject>("Weapons/RangedWeapon").gameObject).Build();
             },
         };
     }

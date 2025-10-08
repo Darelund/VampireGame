@@ -88,5 +88,6 @@ public class PlayerMovement : MonoBehaviour
         canSprint = stats["Sprint"].boolData;
         moveSpeed = stats["Speed"].floatData;
         //   stats["speed"]
+        Debug.Log(stats["Speed"].floatData);
     }
 }

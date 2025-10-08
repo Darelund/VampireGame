@@ -32,7 +32,12 @@ public class PlayerUpgrade : MonoBehaviour
         get { return abilityUpgrades; }
         set 
         { 
-            abilityUpgrades = value; 
+            abilityUpgrades = value;
+            foreach (var a in abilityUpgrades)
+            {
+                Debug.Log(a.Value);
+            }
+            Debug.Log("Did I run?");
             OnChangeAbility?.Invoke(abilityUpgrades);
         }
     }
@@ -89,7 +94,7 @@ public class PlayerUpgrade : MonoBehaviour
     private bool CheckIfUpgrade(Collider2D collision, out UpgradePoint upgradePoint)
     {
         upgradePoint = collision.GetComponent<UpgradePoint>();
-        return (upgradePoint == null);
+        return (upgradePoint != null);
     }
     private void AddExperiencePoints(UpgradePoint upgradePoint)
     {
@@ -141,6 +146,10 @@ public class PlayerStat
         this.stringData = stringData;
         this.floatData = floatData;
         this.boolData = boolData;
+    }
+    public override string ToString()
+    {
+        return $"{stringData}{floatData}{boolData}";
     }
 
    // public PlayerStat() { }
