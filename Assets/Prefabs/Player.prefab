@@ -269,7 +269,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 2, y: 2, z: 2}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 5161977494218290739}
@@ -405,7 +405,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 2, y: 2, z: 2}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4904197311022858120}
@@ -1793,7 +1793,7 @@ GameObject:
   - component: {fileID: 6050569030385214155}
   - component: {fileID: 1518894871140453317}
   - component: {fileID: 9121384271264511375}
-  - component: {fileID: 1316563214970833640}
+  - component: {fileID: 8632256748260571655}
   m_Layer: 6
   m_Name: Player
   m_TagString: Untagged
@@ -1833,7 +1833,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerController
   playerMovement: {fileID: 5719125412973447798}
-  rotater: {fileID: 1316563214970833640}
+  rotater: {fileID: 8632256748260571655}
   cameraFollow: {fileID: 0}
   playerHealth: {fileID: 1518894871140453317}
   playerUpgrade: {fileID: 9121384271264511375}
@@ -1965,7 +1965,7 @@ MonoBehaviour:
     Upgrades: []
   slider: {fileID: 0}
   currentLevelText: {fileID: 0}
---- !u!114 &1316563214970833640
+--- !u!114 &8632256748260571655
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1974,10 +1974,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 6388393428351026052}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 759df439315dcc3488ecb38ab1c563e9, type: 3}
+  m_Script: {fileID: 11500000, guid: 7b630bfd938d0c94e9990f13e4e3a060, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Rotatable
-  owner: 0
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerRotater
 --- !u!1 &6506300346583445843
 GameObject:
   m_ObjectHideFlags: 0
@@ -2575,7 +2574,7 @@ Transform:
   m_GameObject: {fileID: 8365858761519239250}
   serializedVersion: 2
   m_LocalRotation: {x: -0.58470285, y: -0.062056668, z: -0.13977958, w: 0.79670143}
-  m_LocalPosition: {x: 0.67800045, y: 0.21100001, z: -0.313}
+  m_LocalPosition: {x: 0.222, y: 0.304, z: 0.09}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -2741,12 +2740,16 @@ PrefabInstance:
       objectReference: {fileID: 8176201847084811123}
     - target: {fileID: 7221536200231155939, guid: c75c45d81f4a03d48b5c75551499458d, type: 3}
       propertyPath: cooldown
-      value: 0.5
+      value: 0.3
       objectReference: {fileID: 0}
     - target: {fileID: 7221536200231155939, guid: c75c45d81f4a03d48b5c75551499458d, type: 3}
       propertyPath: weaponOwner
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7221536200231155939, guid: c75c45d81f4a03d48b5c75551499458d, type: 3}
+      propertyPath: projectilePrefab
+      value: 
+      objectReference: {fileID: 5430049374541619485, guid: f8251e26eead32d489db48dca38b888b, type: 3}
     - target: {fileID: 7221536200231155939, guid: c75c45d81f4a03d48b5c75551499458d, type: 3}
       propertyPath: currentCooldownTimer
       value: 1
