@@ -2,9 +2,10 @@ using System;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SocialPlatforms.Impl;
 using UnityEngine.UI;
 
-public class PlayerUpgrade : MonoBehaviour
+public class PlayerUpgrade : MonoBehaviour, ISaveable<GameData>
 {
     [SerializeField] private int currentExperiencePoints;
     private int totalExperiencePoints;
@@ -33,11 +34,6 @@ public class PlayerUpgrade : MonoBehaviour
         set 
         { 
             abilityUpgrades = value;
-            foreach (var a in abilityUpgrades)
-            {
-                Debug.Log(a.Value);
-            }
-            Debug.Log("Did I run?");
             OnChangeAbility?.Invoke(abilityUpgrades);
         }
     }
@@ -121,6 +117,13 @@ public class PlayerUpgrade : MonoBehaviour
         SoundManager.Instance.PlaySound("LevelUp", "FantasyLevelUpSound");
     }
 
+    public void Save(GameData data)
+    {
+        var newestScore = data.scores[(data.scores.Count - 1)];
+        newestScore.ExperiencePoints = currentExperiencePoints;
+        newestScore.Level = currentLevel;
+        //newestScore.Waves = currentwave
+    }
 }
 [System.Serializable]
 public class Level

@@ -2,7 +2,7 @@ using System;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class GameManager : StateMachine, ISaveable
+public class GameManager : StateMachine, ISaveable<GameData>
 {
     [SerializeField] private GameObject player;
     public GameObject Player => player; 

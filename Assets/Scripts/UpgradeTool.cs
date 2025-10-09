@@ -46,90 +46,90 @@ public class UpgradeTool : EditorWindow
     }
     //When interacting with a window, OnGUI runs
     //Not every frame, but when you interact with the window
-    //private void OnGUI()
-    //{
-    //    //GUILayout.Label("Look at me, I am a tool!");
-    //    //GUILayout.BeginHorizontal();
-    //    //GUILayout.Label("Look at me, sssss!");
-    //    //GUILayout.TextField("Description"); GUILayout.EndHorizontal();
-    //    //GUILayout.EndHorizontal();
+    private void OnGUI()
+    {
+        //GUILayout.Label("Look at me, I am a tool!");
+        //GUILayout.BeginHorizontal();
+        //GUILayout.Label("Look at me, sssss!");
+        //GUILayout.TextField("Description"); GUILayout.EndHorizontal();
+        //GUILayout.EndHorizontal();
 
 
-    //    GUILayout.Label("Create Upgrade", EditorStyles.boldLabel);
+        GUILayout.Label("Create Upgrade", EditorStyles.boldLabel);
 
-    //    //------------------------------- Give name ---------------------------------------
-    //    EditorGUILayout.BeginHorizontal();
-    //    GUILayout.Label("Name");
-    //    upgradeName = EditorGUILayout.TextField("", upgradeName);
-    //    EditorGUILayout.EndHorizontal();
+        //------------------------------- Give name ---------------------------------------
+        EditorGUILayout.BeginHorizontal();
+        GUILayout.Label("Name");
+        upgradeName = EditorGUILayout.TextField("", upgradeName);
+        EditorGUILayout.EndHorizontal();
 
-    //    if (string.IsNullOrEmpty(upgradeName))
-    //    {
-    //        GUILayout.Label("Please assign a name to your upgrade");
-    //     //   return;
-    //    }
-
-
-    //    //------------------------------- Give Description ---------------------------------------
-    //    EditorGUILayout.BeginHorizontal();
-    //    GUILayout.Label("Description");
-    //    description = EditorGUILayout.TextArea("", description);
-    //    EditorGUILayout.EndHorizontal();
-
-    //    if (string.IsNullOrEmpty(description))
-    //    {
-    //        GUILayout.Label("Please assign a description to your upgrade");
-    //      //  return;
-    //    }
+        if (string.IsNullOrEmpty(upgradeName))
+        {
+            GUILayout.Label("Please assign a name to your upgrade");
+            //   return;
+        }
 
 
+        //------------------------------- Give Description ---------------------------------------
+        EditorGUILayout.BeginHorizontal();
+        GUILayout.Label("Description");
+        description = EditorGUILayout.TextArea("", description);
+        EditorGUILayout.EndHorizontal();
 
-    //    //------------------------------- Give Image ---------------------------------------
-    //    //EditorGUILayout.BeginHorizontal();
-    //    //GUILayout.Label("Image");
-    //   // image = EditorGUILayout.
-    //    //EditorGUILayout.EndHorizontal();
-
-    //    if (string.IsNullOrEmpty(description))
-    //    {
-    //        GUILayout.Label("Please assign a description to your upgrade");
-    //        //  return;
-    //    }
+        if (string.IsNullOrEmpty(description))
+        {
+            GUILayout.Label("Please assign a description to your upgrade");
+            //  return;
+        }
 
 
 
+        //------------------------------- Give Image ---------------------------------------
+        //EditorGUILayout.BeginHorizontal();
+        //GUILayout.Label("Image");
+        // image = EditorGUILayout.
+        //EditorGUILayout.EndHorizontal();
 
-    //    if (GUILayout.Button("Create Upgrade"))
-    //    {
-    //        CreateUpgrade();
-    //    }
-    //    //foreach (var item in test)
-    //    //{
+        if (string.IsNullOrEmpty(description))
+        {
+            GUILayout.Label("Please assign a description to your upgrade");
+            //  return;
+        }
 
-    //    //}
-    //    //Debug.Log(path);
 
-    //}
-    //private void OnEnable()
-    //{
-    //    //Allocate unmanaged resources or perform one-time set up functions here
-    //    //var names = AssetDatabase.GetAllAssetBundleNames();
-    //    //foreach(var name in names)
-    //    //{
-    //    //    Debug.Log(name);
-    //    //}
-    //    var assets = AssetDatabase.LoadAllAssetRepresentationsAtPath(path);
 
-    //    string[] cool = AssetDatabase.FindAssets("t:UpgradeSO");
 
-    //    assets.ToList().ForEach(asset =>
-    //    {
-    //        Debug.Log(asset.name);
-    //    });
+        if (GUILayout.Button("Create Upgrade"))
+        {
+            CreateUpgrade();
+        }
+        //foreach (var item in test)
+        //{
 
-    //    //AssetDatabase.LoadAllAssetsAtPath(path).ToList().ForEach(n => Debug.Log(n));
+        //}
+        //Debug.Log(path);
 
-    //}
+    }
+    private void OnEnable()
+    {
+        //Allocate unmanaged resources or perform one-time set up functions here
+        //var names = AssetDatabase.GetAllAssetBundleNames();
+        //foreach(var name in names)
+        //{
+        //    Debug.Log(name);
+        //}
+        var assets = AssetDatabase.LoadAllAssetRepresentationsAtPath(path);
+
+        string[] cool = AssetDatabase.FindAssets("t:UpgradeSO");
+
+        assets.ToList().ForEach(asset =>
+        {
+            Debug.Log(asset.name);
+        });
+
+        //AssetDatabase.LoadAllAssetsAtPath(path).ToList().ForEach(n => Debug.Log(n));
+
+    }
     private void OnDisable()
     {
         //Free unmanaged resources, state teardown

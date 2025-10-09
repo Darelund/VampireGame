@@ -3,7 +3,7 @@ using UnityEngine;
 public class AddAbilityUpgrade : Upgrade
 {
     public GameObject NewAbilityPrefab;
-
+  
     public override void Awake()
     {
         base.Awake();
@@ -16,3 +16,23 @@ public class AddAbilityUpgrade : Upgrade
 
     }
 }
+
+public class AddProjectileUpgrade : Upgrade
+{
+    public override void ActivateAbility()
+    {
+       
+    }
+}
+public class AddWeaponUpgrade : Upgrade
+{
+    //We need get a reference to the weapon of the player
+    public override void ActivateAbility()
+    {
+       //Change x value
+    }
+}
+//weapon (damage, colldown)
+//projectiles
+//sword
+// gun

@@ -21,6 +21,7 @@ public class ChangeAbilityUpgrade : Upgrade
     {
         playerUpgrade.AbilityUpgrades[_changeUpgradeSO.ChangeAbilityType.ToString()] = _changeUpgradeSO.playerStat;
         playerUpgrade.FireChangeAbility();
+
         GameManager.Instance.SwitchState<PlayingState>();
     }
 }
