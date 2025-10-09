@@ -30,7 +30,7 @@ public class ProjectileManager : MonoBehaviour
     {
         for (int i = 0; i < projectiles.Count; i++)
         {
-            //projectiles[i].GetComponent<Projectile>().UpdateProjectile(); Uses physics for now
+            projectiles[i].GetComponent<Projectile>().UpdateProjectile();
             if (!projectiles[i].GetComponent<Projectile>().IsAlive)
             {
                 Destroy(projectiles[i].gameObject);

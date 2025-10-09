@@ -23,18 +23,19 @@ public class Projectile : Damageable
         this.dir = dir;
         this.speed = speed;
 
-        rb.AddForce(dir * speed, ForceMode2D.Impulse);
-        RightRotation(dir);
+        //  rb.AddForce(dir * speed, ForceMode2D.Impulse);
+        GetFacingDirection(dir);
+    }
+    private void GetFacingDirection(Vector2 dir)
+    {
+        var angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+        transform.rotation = Quaternion.Euler(0, 0, angle);
     }
     public void UpdateProjectile()
     {
         transform.position += (Vector3)(dir * speed * Time.deltaTime);
     }
-    private void RightRotation(Vector2 dir)
-    {
-        var angle = Mathf.Atan2 (dir.y, dir.x) * Mathf.Rad2Deg;
-        transform.rotation = Quaternion.Euler(0, 0, angle);
-    }
+    
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
