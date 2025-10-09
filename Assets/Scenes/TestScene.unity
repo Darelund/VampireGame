@@ -2001,8 +2001,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ObjectPool
   poolSize: 5
   automaticallyExpandPoolSize: 0
-  poolPrefab: {fileID: 7841204320835765149, guid: 168e84bfd311c1940aecb73dfcd7ad51, type: 3}
   poolParent: {fileID: 639436116}
+  enemyToSpawn: 
+  enemyFactory: {fileID: 0}
 --- !u!1 &646401735 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6388393428351026052, guid: c4e6f8aba383aee40b5bf671b2fda4d7, type: 3}
@@ -3638,8 +3639,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ObjectPool
   poolSize: 20
   automaticallyExpandPoolSize: 0
-  poolPrefab: {fileID: 7841204320835765149, guid: 92e58e1df572a074aaa413cb92692739, type: 3}
   poolParent: {fileID: 1056146965}
+  enemyToSpawn: 
+  enemyFactory: {fileID: 0}
 --- !u!1 &1072410008
 GameObject:
   m_ObjectHideFlags: 0
@@ -6984,6 +6986,63 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4633add5b9865d4459569ae69ccc28f2, type: 3}
+--- !u!1001 &3937512219747534614
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4709083351424142865, guid: 168e84bfd311c1940aecb73dfcd7ad51, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 21.04913
+      objectReference: {fileID: 0}
+    - target: {fileID: 4709083351424142865, guid: 168e84bfd311c1940aecb73dfcd7ad51, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -8.044661
+      objectReference: {fileID: 0}
+    - target: {fileID: 4709083351424142865, guid: 168e84bfd311c1940aecb73dfcd7ad51, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4709083351424142865, guid: 168e84bfd311c1940aecb73dfcd7ad51, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.92387956
+      objectReference: {fileID: 0}
+    - target: {fileID: 4709083351424142865, guid: 168e84bfd311c1940aecb73dfcd7ad51, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.38268343
+      objectReference: {fileID: 0}
+    - target: {fileID: 4709083351424142865, guid: 168e84bfd311c1940aecb73dfcd7ad51, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4709083351424142865, guid: 168e84bfd311c1940aecb73dfcd7ad51, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4709083351424142865, guid: 168e84bfd311c1940aecb73dfcd7ad51, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 45
+      objectReference: {fileID: 0}
+    - target: {fileID: 4709083351424142865, guid: 168e84bfd311c1940aecb73dfcd7ad51, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4709083351424142865, guid: 168e84bfd311c1940aecb73dfcd7ad51, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6068481962442139174, guid: 168e84bfd311c1940aecb73dfcd7ad51, type: 3}
+      propertyPath: m_Name
+      value: Lyktgubbe
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 168e84bfd311c1940aecb73dfcd7ad51, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -7001,3 +7060,4 @@ SceneRoots:
   - {fileID: 1893215963}
   - {fileID: 1356729579}
   - {fileID: 1165411211}
+  - {fileID: 3937512219747534614}

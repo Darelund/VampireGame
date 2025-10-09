@@ -38,6 +38,7 @@ public class HealthEffect : MonoBehaviour //Maybe I want to make this 2 differen
         //Debug.Log(healthColor == null);
         //Debug.Log(innerObj.GetComponent<SpriteRenderer>() == null);
 
+        if (visuals == null) return;
         if(visuals.GetComponent<SpriteRenderer>() != null)
         {
             visuals.GetComponent<SpriteRenderer>().color = healthColor.Color;
