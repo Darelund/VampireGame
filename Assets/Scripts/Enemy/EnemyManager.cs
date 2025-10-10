@@ -46,7 +46,7 @@ public class EnemyManager : MonoBehaviour
             {
                 for(int j = 0; j < waveManager.GetCurrentWave.EnemyAmount.Count; j++)
                 {
-                    if(objectPoolManager.GetPools.ToList().Find(p => p.Name == waveManager.GetCurrentWave.EnemyAmount[j].EnemyPool) is PoolData poolData)
+                    if(objectPoolManager.GetPools.ToList().Find(p => p.ObjectPool == waveManager.GetCurrentWave.EnemyAmount[j].EnemyPool) is PoolData poolData)
                     {
                         poolData.ObjectPool.GiveBackToPool(enemiesToRemove[i].GetComponent<ObjectToPool>());
                     }
@@ -56,5 +56,10 @@ public class EnemyManager : MonoBehaviour
             enemiesToRemove.Clear(); 
         }
       
+    }
+
+    public bool EnemiesExist()
+    {
+        return enemies.Count > 0;
     }
 }

@@ -9,7 +9,7 @@ public class ObjectPool : MonoBehaviour //Maybe make it generic
     [SerializeField] protected Transform poolParent;
 
     [SerializeField] private string enemyToSpawn; //Should I really use a string?... No... But I love strings.
-    [SerializeField] private EnemyFactory enemyFactory;
+    [SerializeField] private EnemyFactory enemyFactory; //TODO: Need to update it so that we can use Projectiles with it
     //[SerializeField] private EnemyType enemyType;
 
     protected Stack<ObjectToPool> poolStack;

@@ -16,7 +16,7 @@ public class PlayingState : State
     public override void UpdateState()
     {
         base.UpdateState();
-        waveManager.UpdateSpawner();
+        waveManager.UpdateWave();
 
         controller.UpdatePlayer();
 
