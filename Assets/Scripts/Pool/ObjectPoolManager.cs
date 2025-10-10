@@ -5,15 +5,11 @@ using UnityEngine;
 public class ObjectPoolManager : MonoBehaviour
 {
     [SerializeField] private PoolData[] poolData;
-    [SerializeField] private Dictionary<string, ObjectPool> objectPoolDictionary = new();
-    public Dictionary<string, ObjectPool> GetObjectPools => objectPoolDictionary;
+    public PoolData[] GetPools => poolData;
     private bool isPooles = false;
 
 
-    //private void Awake()
-    //{
-    //    InitializeAllPoles();
-    //}
+   
     public void InitializeAllPooles()
     {
         if (isPooles) return;
@@ -22,7 +18,7 @@ public class ObjectPoolManager : MonoBehaviour
         foreach (var pool in poolData)
         {
             pool.ObjectPool.InitializePool();
-            objectPoolDictionary.Add(pool.Name, pool.ObjectPool);
+            //objectPoolDictionary.Add(pool.Name, pool.ObjectPool);
         }
     }
 

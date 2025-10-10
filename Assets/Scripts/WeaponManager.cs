@@ -33,12 +33,6 @@ public class WeaponManager : MonoBehaviour
         {
 
             weapons[i].GetComponent<BaseWeapon>().UpdateWeapon(); 
-            //if (!weapons[i].GetComponent<BaseWeapon>().IsAlive)
-            //{
-            //    //Destroy(projectiles[i].gameObject);
-            //    //projectiles.RemoveAt(i);
-            //    //i--;
-            //}
         }
     }
 }

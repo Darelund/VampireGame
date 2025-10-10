@@ -4885,7 +4885,7 @@ GameObject:
   - component: {fileID: 6422144503192113783}
   - component: {fileID: 6897897136215346173}
   m_Layer: 0
-  m_Name: Lyktgubbe
+  m_Name: MeleeLyktgubbe
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4969,7 +4969,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyHealth
   currentHealth: 0
-  maxHealth: 100
+  maxHealth: 20
   upgradePointObj: {fileID: 8268766501368687321, guid: d9b4dd97851e9364c8b7627b79f1ed36, type: 3}
   dyingPrefab: {fileID: 6693746713826099328, guid: a734f161d4468d44caf1e1a72f3cd109, type: 3}
 --- !u!114 &437195910512815168

@@ -839,10 +839,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ObjectPoolManager
   poolData:
-  - Name: "MeleeV\xE4tte"
+  - Name: MeleeLyktgubbePool
     ObjectPool: {fileID: 1252105677}
-  - Name: MeleeLyktgubbe
-    ObjectPool: {fileID: 1252105677}
+  - Name: RangedLyktgubbePool
+    ObjectPool: {fileID: 1749042161}
 --- !u!4 &240387025
 Transform:
   m_ObjectHideFlags: 0
@@ -857,7 +857,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1252105676}
-  - {fileID: 1680602987}
+  - {fileID: 1749042160}
   m_Father: {fileID: 846368827}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &251320694
@@ -2657,11 +2657,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WaveManager
   startSpawn: 0
-  spawnInterval: 5
   currentSpawnTime: 0
   spawnRadius: 0
   enemyManager: {fileID: 1441585577}
   objectPoolManager: {fileID: 240387024}
+  currentWave: 1
+  WaveData:
+  - SpawnInterval: 1
+    DifficultyMultiplier: 1
+    EnemyAmount:
+    - EnemyPool: MeleeLyktgubbePool
+      CurrentlySpawned: 0
+      MaxAmountToSpawn: 1
+    - EnemyPool: RangedLyktgubbePool
+      CurrentlySpawned: 0
+      MaxAmountToSpawn: 3
 --- !u!1 &901407676
 GameObject:
   m_ObjectHideFlags: 0
@@ -4180,6 +4190,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::EnemyManager
   enemies: []
   objectPoolManager: {fileID: 240387024}
+  waveManager: {fileID: 888046336}
 --- !u!4 &1441585578
 Transform:
   m_ObjectHideFlags: 0
@@ -5156,7 +5167,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlayingState
   controller: {fileID: 1299448158}
   enemyManager: {fileID: 1441585577}
-  waveManager: {fileID: 0}
+  waveManager: {fileID: 888046336}
   projectileManager: {fileID: 395976321}
   weaponManager: {fileID: 1187823526}
   objectPoolManager: {fileID: 240387024}
@@ -5513,55 +5524,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5330086488147415371, guid: 4633add5b9865d4459569ae69ccc28f2, type: 3}
   m_PrefabInstance: {fileID: 1695770549}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1680602986
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1680602987}
-  - component: {fileID: 1680602988}
-  m_Layer: 0
-  m_Name: "MeleeV\xE4tte"
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1680602987
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1680602986}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 240387025}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1680602988
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1680602986}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 304f6c9abe0e1d6448cc0ecd6656c5da, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::ObjectPool
-  poolSize: 20
-  automaticallyExpandPoolSize: 0
-  poolParent: {fileID: 1680602987}
-  enemyToSpawn: "MeleeV\xE4tte"
-  enemyFactory: {fileID: 1923276975}
 --- !u!1001 &1695770549
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5704,6 +5666,116 @@ RectTransform:
   m_AnchoredPosition: {x: -56.71, y: 14.6}
   m_SizeDelta: {x: 350, y: 28.007}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1001 &1746501471
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 3284277021049325297, guid: c75c45d81f4a03d48b5c75551499458d, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -18.447323
+      objectReference: {fileID: 0}
+    - target: {fileID: 3284277021049325297, guid: c75c45d81f4a03d48b5c75551499458d, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -3.9679646
+      objectReference: {fileID: 0}
+    - target: {fileID: 3284277021049325297, guid: c75c45d81f4a03d48b5c75551499458d, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3284277021049325297, guid: c75c45d81f4a03d48b5c75551499458d, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3284277021049325297, guid: c75c45d81f4a03d48b5c75551499458d, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3284277021049325297, guid: c75c45d81f4a03d48b5c75551499458d, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3284277021049325297, guid: c75c45d81f4a03d48b5c75551499458d, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3284277021049325297, guid: c75c45d81f4a03d48b5c75551499458d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3284277021049325297, guid: c75c45d81f4a03d48b5c75551499458d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3284277021049325297, guid: c75c45d81f4a03d48b5c75551499458d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6516763132228688244, guid: c75c45d81f4a03d48b5c75551499458d, type: 3}
+      propertyPath: m_Name
+      value: RangedWeapon
+      objectReference: {fileID: 0}
+    - target: {fileID: 6516763132228688244, guid: c75c45d81f4a03d48b5c75551499458d, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: c75c45d81f4a03d48b5c75551499458d, type: 3}
+--- !u!1 &1749042159
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1749042160}
+  - component: {fileID: 1749042161}
+  m_Layer: 0
+  m_Name: RangedLyktgubbePool
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1749042160
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1749042159}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 240387025}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1749042161
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1749042159}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 304f6c9abe0e1d6448cc0ecd6656c5da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ObjectPool
+  poolSize: 20
+  automaticallyExpandPoolSize: 0
+  poolParent: {fileID: 1749042160}
+  enemyToSpawn: RangedLyktgubbe
+  enemyFactory: {fileID: 1923276975}
 --- !u!1001 &1762976505
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6717,6 +6789,17 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2080214458}
   m_CullTransparentMesh: 1
+--- !u!114 &2085329342 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4429803940029585487, guid: c4e6f8aba383aee40b5bf671b2fda4d7, type: 3}
+  m_PrefabInstance: {fileID: 6237464585097594095}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ca8e066fbe24034ab619fe993bd9f96, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RangeWeapon
 --- !u!1 &2087761939
 GameObject:
   m_ObjectHideFlags: 0
@@ -6768,6 +6851,10 @@ PrefabInstance:
       propertyPath: cameraFollow
       value: 
       objectReference: {fileID: 519420033}
+    - target: {fileID: 7622618910778659997, guid: c4e6f8aba383aee40b5bf671b2fda4d7, type: 3}
+      propertyPath: playerShooter
+      value: 
+      objectReference: {fileID: 2085329342}
     - target: {fileID: 9121384271264511375, guid: c4e6f8aba383aee40b5bf671b2fda4d7, type: 3}
       propertyPath: slider
       value: 
@@ -6837,3 +6924,4 @@ SceneRoots:
   - {fileID: 846368827}
   - {fileID: 1478515259}
   - {fileID: 1923276976}
+  - {fileID: 1746501471}

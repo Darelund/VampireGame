@@ -30,14 +30,14 @@ public class EnemyFactory : MonoBehaviour
             ["RangedLyktgubbe"] = () =>
             {
                 Factory<EnemyController> enemyFactory = new();
-                enemyFactory.builder.SetPrefab(Resources.Load<EnemyController>("Enemies/Lyktgubbe").gameObject);
+                enemyFactory.builder.SetPrefab(Resources.Load<EnemyController>("Enemies/RangedLyktgubbe").gameObject);
                 return enemyFactory.builder.WithScriptAttribute<OrbitMovement>().WithScriptAttribute<Rotatable>().WithPrefabAttribute(Resources.Load<GameObject>("Weapons/RangedWeapon").gameObject).Build();
             },
             ["MeleeLyktgubbe"] = () =>
             {
                 Factory<EnemyController> enemyFactory = new();
-                enemyFactory.builder.SetPrefab(Resources.Load<EnemyController>("Enemies/Lyktgubbe").gameObject);
-                return enemyFactory.builder.WithScriptAttribute<MoveTowardsMovement>().WithScriptAttribute<Rotatable>().WithPrefabAttribute(Resources.Load<GameObject>("Weapons/RangedWeapon").gameObject).Build();
+                enemyFactory.builder.SetPrefab(Resources.Load<EnemyController>("Enemies/MeleeLyktgubbe").gameObject);
+                return enemyFactory.builder.WithScriptAttribute<MoveTowardsMovement>().WithScriptAttribute<Rotatable>().WithPrefabAttribute(Resources.Load<GameObject>("Weapons/ElectricWeapon").gameObject).Build();
             },
         };
     }

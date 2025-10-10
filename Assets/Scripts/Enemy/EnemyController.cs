@@ -97,6 +97,8 @@ public class EnemyController : MonoBehaviour, IAttributable
 
     private readonly List<Attribute> _attributes = new();
     [SerializeField] private EnemyHealth health;
+   private BaseWeapon baseWeapon;
+
 
     public void UpdateEnemy()
     {
@@ -105,6 +107,7 @@ public class EnemyController : MonoBehaviour, IAttributable
         {
             attribute.UpdateAttribute(gameObject);
         }
+        baseWeapon?.UpdateWeapon();
     }
     
     public void ResetEnemy()
@@ -120,6 +123,6 @@ public class EnemyController : MonoBehaviour, IAttributable
     public void AddPrefabAttribute(GameObject prefab)
     {
         //TODO: Add gameobject
-        Instantiate(prefab, transform);
+        baseWeapon = Instantiate(prefab, transform).GetComponent<BaseWeapon>();
     }
 }

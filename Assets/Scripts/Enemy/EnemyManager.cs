@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class EnemyManager : MonoBehaviour
@@ -8,6 +9,7 @@ public class EnemyManager : MonoBehaviour
     public List<GameObject> GetEnemiesList => enemies;
     private List<GameObject> enemiesToRemove = new List<GameObject>();
     [SerializeField] private ObjectPoolManager objectPoolManager;
+    [SerializeField] private WaveManager waveManager;
 
     private static EnemyManager instance;
 
@@ -32,16 +34,9 @@ public class EnemyManager : MonoBehaviour
         for (int i = 0; i < enemies.Count; i++)
         {
             enemies[i].GetComponent<EnemyController>().UpdateEnemy();
-            //TODO: Remove enemies here
             if(!enemies[i].GetComponent<EnemyHealth>().IsAlive)
             {
-
-                //Destroy(enemies[i].gameObject);
-                //enemies.RemoveAt(i);
-                //i--;
-
                 enemiesToRemove.Add(enemies[i]);
-                //Maybe use a Queue or stack?
             }
         }
 
@@ -49,11 +44,15 @@ public class EnemyManager : MonoBehaviour
         {
             for (int i = enemiesToRemove.Count - 1; i >= 0; i--)
             {
-               // enemiesToRemove[i].GetComponent<EnemyHealth>().SetmaxHealth
-                objectPoolManager.GetObjectPools["Enemy1"].GiveBackToPool(enemiesToRemove[i].GetComponent<ObjectToPool>());
+                for(int j = 0; j < waveManager.GetCurrentWave.EnemyAmount.Count; j++)
+                {
+                    if(objectPoolManager.GetPools.ToList().Find(p => p.Name == waveManager.GetCurrentWave.EnemyAmount[j].EnemyPool) is PoolData poolData)
+                    {
+                        poolData.ObjectPool.GiveBackToPool(enemiesToRemove[i].GetComponent<ObjectToPool>());
+                    }
+                }
                 enemies.Remove(enemiesToRemove[i]);
             }
-            //Do I have to clear? I have to right? The elements will still remain but will be missing their references?
             enemiesToRemove.Clear(); 
         }
       

@@ -44,7 +44,7 @@ public class Projectile : Damageable
         if (damageableObject != null && damageableObject.GetComponent<Projectile>() == null)
         {
             //Todo: Come up with different projectiles, with different damage
-            int dmg = Random.Range(15, 30);
+            int dmg = Random.Range(5, 10);
             damageableObject.TakeDamage(dmg);
         }
         DestroyItself();

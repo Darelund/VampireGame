@@ -3,9 +3,9 @@ using UnityEngine;
 public class RangeWeapon : BaseWeapon
 {
     [SerializeField] private GameObject projectilePrefab;
-    [SerializeField] private GameObject AttackProjectilePrefab;
+    
 
-    [SerializeField] private Transform target; 
+    [SerializeField] protected Transform target; 
 
 
     protected void Start()
@@ -13,7 +13,7 @@ public class RangeWeapon : BaseWeapon
         if (GetWeaponOwner == CharacterType.NonPlayer)
             target = GameManager.Instance.Player.transform;
 
-        WeaponManager.Instance.GetWeapons.Add(gameObject);
+      //  WeaponManager.Instance.GetWeapons.Add(gameObject);
     }
 
 

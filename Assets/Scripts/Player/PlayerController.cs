@@ -7,7 +7,7 @@ public class PlayerController : MonoBehaviour, ISaveable
 
     [SerializeField] private PlayerMovement playerMovement;
     [SerializeField] private PlayerRotater rotater;
-    //[SerializeField] private BaseWeapon playerShooter;
+    [SerializeField] private BaseWeapon playerShooter;
     [SerializeField] private CameraFollow cameraFollow;
     [SerializeField] private PlayerHealth playerHealth;
     [SerializeField] private PlayerUpgrade playerUpgrade;
@@ -40,7 +40,7 @@ public class PlayerController : MonoBehaviour, ISaveable
     {
         playerMovement.UpdateMovement();
         rotater?.Rotate();
-        //playerShooter.UpdateUsingWeapon();
+         playerShooter.UpdateWeapon();
     }
     public void LateUpdatePlayer()
     {
