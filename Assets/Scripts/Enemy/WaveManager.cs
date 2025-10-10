@@ -2,16 +2,22 @@ using System.Collections;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class EnemySpawner : MonoBehaviour
+public class WaveManager : MonoBehaviour
 {
     [SerializeField] private float startSpawn;
     [SerializeField] private float spawnInterval = 5;
     [SerializeField] private float currentSpawnTime;
     [SerializeField] private float spawnRadius;
-    [SerializeField] private GameObject spawnObject;
+    //[SerializeField] private GameObject spawnObject;
 
     [SerializeField] private EnemyManager enemyManager;
     [SerializeField] private ObjectPoolManager objectPoolManager;
+
+    //Maybe use in future
+    //[SerializeField] private AnimationCurve difficultyCurve;
+
+
+    private int currentWave = 1;
 
 
 
@@ -20,7 +26,7 @@ public class EnemySpawner : MonoBehaviour
         if(startSpawn > Time.time) return;
 
         Spawner();
-
+        //difficultyCurve.eva
     }
     private void Spawner()
     {
@@ -64,4 +70,12 @@ public class EnemySpawner : MonoBehaviour
         float YPos = Random.Range(-30, 30);
         return new Vector2(XPos, YPos);
     }
+}
+[System.Serializable]
+public class WaveData
+{
+    public float SpawnInterval;
+    public float DifficultyMultiplier;
+
+
 }

@@ -4,7 +4,7 @@ public class PlayingState : State
 {
     [SerializeField] private PlayerController controller;
     [SerializeField] private EnemyManager enemyManager;
-    [SerializeField] private EnemySpawner enemySpawner;
+    [SerializeField] private WaveManager waveManager;
     [SerializeField] private ProjectileManager projectileManager;
     [SerializeField] private WeaponManager weaponManager;
     [SerializeField] private ObjectPoolManager objectPoolManager;
@@ -16,7 +16,7 @@ public class PlayingState : State
     public override void UpdateState()
     {
         base.UpdateState();
-        enemySpawner.UpdateSpawner();
+        waveManager.UpdateSpawner();
 
         controller.UpdatePlayer();
 

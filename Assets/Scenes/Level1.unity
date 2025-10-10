@@ -839,7 +839,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ObjectPoolManager
   poolData:
-  - Name: Enemy1
+  - Name: "MeleeV\xE4tte"
+    ObjectPool: {fileID: 1252105677}
+  - Name: MeleeLyktgubbe
     ObjectPool: {fileID: 1252105677}
 --- !u!4 &240387025
 Transform:
@@ -855,6 +857,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1252105676}
+  - {fileID: 1680602987}
   m_Father: {fileID: 846368827}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &251320694
@@ -2618,33 +2621,14 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 888046335}
-  - component: {fileID: 888046334}
+  - component: {fileID: 888046336}
   m_Layer: 0
-  m_Name: EnemySpawner
+  m_Name: WaveManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &888046334
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 888046333}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c555f0c85b00d084a9a856bfade1a03f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::EnemySpawner
-  startSpawn: 1
-  spawnInterval: 3
-  currentSpawnTime: 0
-  spawnRadius: 10
-  spawnObject: {fileID: 7841204320835765149, guid: 92e58e1df572a074aaa413cb92692739, type: 3}
-  enemyManager: {fileID: 1441585577}
-  objectPoolManager: {fileID: 240387024}
 --- !u!4 &888046335
 Transform:
   m_ObjectHideFlags: 0
@@ -2660,6 +2644,24 @@ Transform:
   m_Children: []
   m_Father: {fileID: 846368827}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &888046336
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 888046333}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a8a279d3994a2a3428bb26ee85e117a5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::WaveManager
+  startSpawn: 0
+  spawnInterval: 5
+  currentSpawnTime: 0
+  spawnRadius: 0
+  enemyManager: {fileID: 1441585577}
+  objectPoolManager: {fileID: 240387024}
 --- !u!1 &901407676
 GameObject:
   m_ObjectHideFlags: 0
@@ -3716,7 +3718,7 @@ GameObject:
   - component: {fileID: 1252105676}
   - component: {fileID: 1252105677}
   m_Layer: 0
-  m_Name: EnemyPool (1)
+  m_Name: MeleeLyktgubbePool
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5154,7 +5156,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlayingState
   controller: {fileID: 1299448158}
   enemyManager: {fileID: 1441585577}
-  enemySpawner: {fileID: 888046334}
+  waveManager: {fileID: 0}
   projectileManager: {fileID: 395976321}
   weaponManager: {fileID: 1187823526}
   objectPoolManager: {fileID: 240387024}
@@ -5511,6 +5513,55 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5330086488147415371, guid: 4633add5b9865d4459569ae69ccc28f2, type: 3}
   m_PrefabInstance: {fileID: 1695770549}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1680602986
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1680602987}
+  - component: {fileID: 1680602988}
+  m_Layer: 0
+  m_Name: "MeleeV\xE4tte"
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1680602987
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1680602986}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 240387025}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1680602988
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1680602986}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 304f6c9abe0e1d6448cc0ecd6656c5da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ObjectPool
+  poolSize: 20
+  automaticallyExpandPoolSize: 0
+  poolParent: {fileID: 1680602987}
+  enemyToSpawn: "MeleeV\xE4tte"
+  enemyFactory: {fileID: 1923276975}
 --- !u!1001 &1695770549
 PrefabInstance:
   m_ObjectHideFlags: 0
