@@ -13,6 +13,7 @@ public class PlayerHealth : Damageable
     {
         GameManager.Instance.SwitchState<GameOverState>();
         transform.GetChild(0).gameObject.SetActive(false);
+        SoundManager.Instance.BackgroundMusic.pitch = 0.80f; //Make it darker, to show that we are dead
     }
     public void PlayerHealth_OnValuesChanged(Dictionary<string, PlayerStat> stats)
     {
