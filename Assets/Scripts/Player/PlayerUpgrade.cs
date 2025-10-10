@@ -10,7 +10,9 @@ public class PlayerUpgrade : MonoBehaviour, ISaveable<GameData>
     [SerializeField] private int currentExperiencePoints;
     private int totalExperiencePoints;
     [SerializeField] private int currentLevel = 0;
-    [SerializeField] public List<Level> levelUps;
+    [SerializeField] public List<UpgradeSO> upgrades;
+    private List<int> Levels;
+    [NonSerialized] public CurrentPlayerStats currentPlayerStats = new CurrentPlayerStats();
 
     [SerializeField] private Slider slider;
     [SerializeField] private TMP_Text currentLevelText;
@@ -45,8 +47,8 @@ public class PlayerUpgrade : MonoBehaviour, ISaveable<GameData>
     private void Awake()
     {
         CreateAbilityUpgrades();
-
-        UpdateUpgradeBar(currentExperiencePoints, levelUps[currentLevel + 1].ExperiencePoints);
+        CreateLevels();
+        UpdateUpgradeBar(currentExperiencePoints, Levels[currentLevel + 1]);
     }
 
     private void Update()
@@ -59,8 +61,22 @@ public class PlayerUpgrade : MonoBehaviour, ISaveable<GameData>
                 ReachedNextLevel();
             }
             int nextLevelIndex = currentLevel + 1;
-            UpdateUpgradeBar(currentExperiencePoints, levelUps[nextLevelIndex].ExperiencePoints);
+            UpdateUpgradeBar(currentExperiencePoints, Levels[nextLevelIndex]);
         }
+    }
+    private void CreateLevels()
+    {
+        Levels = new List<int>()
+        {
+            50,
+            150,
+            250,
+            400,
+            600,
+            850,
+            1200,
+            1800,
+        };
     }
     private void CreateAbilityUpgrades()
     {
@@ -84,7 +100,7 @@ public class PlayerUpgrade : MonoBehaviour, ISaveable<GameData>
                 ReachedNextLevel();
             }
             int nextLevelIndex = currentLevel + 1;
-            UpdateUpgradeBar(currentExperiencePoints, levelUps[nextLevelIndex].ExperiencePoints);
+            UpdateUpgradeBar(currentExperiencePoints, Levels[nextLevelIndex]);
         }
     }
     private bool CheckIfUpgrade(Collider2D collision, out UpgradePoint upgradePoint)
@@ -105,7 +121,7 @@ public class PlayerUpgrade : MonoBehaviour, ISaveable<GameData>
     private bool CanReachNextLevel()
     {
         int nextLevelIndex = currentLevel + 1;
-        return (currentExperiencePoints >= levelUps[nextLevelIndex].ExperiencePoints);
+        return (currentExperiencePoints >= Levels[nextLevelIndex]);
     }
     private void ReachedNextLevel()
     {
@@ -114,6 +130,7 @@ public class PlayerUpgrade : MonoBehaviour, ISaveable<GameData>
         currentExperiencePoints = 0; //We want the slider to go back to zero. I am not sure if we should reset it to 0. We probably want it to keep its experience points
                                      //VisualManager.Instance.SpawnText($"LVL: {currentLevel} REACHED!", Vector2.zero, TextType.LvlUp, Color.darkGoldenRod);
         GameManager.Instance.SwitchState<UpgradeState>();
+        UpdateUpgradeBar(currentExperiencePoints, Levels[currentLevel + 1]);
         SoundManager.Instance.PlaySound("LevelUp", "FantasyLevelUpSound");
     }
 
@@ -125,18 +142,18 @@ public class PlayerUpgrade : MonoBehaviour, ISaveable<GameData>
         //newestScore.Waves = currentwave
     }
 }
-[System.Serializable]
-public class Level
-{
-    public int ExperiencePoints;
-    public List<UpgradeSO> Upgrades;
+//[System.Serializable]
+//public class Level
+//{
+//    public int ExperiencePoints;
+//    public List<UpgradeSO> Upgrades;
 
-    public Level(int exp,  List<UpgradeSO> upgrades)
-    {
-        ExperiencePoints = exp;
-        Upgrades = upgrades;
-    }
-}
+//    public Level(int exp,  List<UpgradeSO> upgrades)
+//    {
+//        ExperiencePoints = exp;
+//        Upgrades = upgrades;
+//    }
+//}
 [System.Serializable]
 public class PlayerStat
 {
@@ -156,4 +173,11 @@ public class PlayerStat
     }
 
    // public PlayerStat() { }
+}
+//TODO: Remove this code. UGLY CODE to meet dealine, I need to make a random upgrades selector work based on what upgrades 
+//the player has already taken. I need to be finished in less than 35 minutes, so this will do
+public class CurrentPlayerStats
+{
+    public int CurrentHealthLevel = 0;
+    public int CurrentSpeedLevel = 0;
 }

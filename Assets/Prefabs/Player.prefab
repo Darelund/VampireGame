@@ -2374,6 +2374,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlayerController
   playerMovement: {fileID: 5719125412973447798}
   rotater: {fileID: 8632256748260571655}
+  playerShooter: {fileID: 4429803940029585487}
   cameraFollow: {fileID: 0}
   playerHealth: {fileID: 1518894871140453317}
   playerUpgrade: {fileID: 9121384271264511375}
@@ -2487,22 +2488,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlayerUpgrade
   currentExperiencePoints: 0
   currentLevel: 0
-  levelUps:
-  - ExperiencePoints: 0
-    Upgrades:
-    - {fileID: 0}
-    - {fileID: 0}
-  - ExperiencePoints: 50
-    Upgrades:
-    - {fileID: 11400000, guid: 0e13c84153059da40a7a76a6868fe09a, type: 2}
-    - {fileID: 11400000, guid: 4d6a031cd4c1f5a419fe68a953254929, type: 2}
-    - {fileID: 11400000, guid: 48502de0cdd530540a1386b027f603f6, type: 2}
-  - ExperiencePoints: 150
-    Upgrades: []
-  - ExperiencePoints: 300
-    Upgrades: []
-  - ExperiencePoints: 500
-    Upgrades: []
+  upgrades:
+  - {fileID: 11400000, guid: 0e13c84153059da40a7a76a6868fe09a, type: 2}
+  - {fileID: 11400000, guid: d5f18d817f68d794ea7071436fd4f9d1, type: 2}
+  - {fileID: 11400000, guid: d13efb365d49fcf46a1e694b5a5750e3, type: 2}
+  - {fileID: 11400000, guid: 4d6a031cd4c1f5a419fe68a953254929, type: 2}
+  - {fileID: 11400000, guid: 10e6f69c9cd4b584193b7580d2708689, type: 2}
+  - {fileID: 11400000, guid: f1cb5c0bb97e9ed4c8b9834e25db2b72, type: 2}
+  - {fileID: 11400000, guid: 2f272b3c73fca2a4484de869404d1f09, type: 2}
   slider: {fileID: 0}
   currentLevelText: {fileID: 0}
 --- !u!114 &8632256748260571655
@@ -3303,6 +3296,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c75c45d81f4a03d48b5c75551499458d, type: 3}
+--- !u!114 &4429803940029585487 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7221536200231155939, guid: c75c45d81f4a03d48b5c75551499458d, type: 3}
+  m_PrefabInstance: {fileID: 6431667892629020844}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ca8e066fbe24034ab619fe993bd9f96, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RangeWeapon
 --- !u!4 &8418854240066184797 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3284277021049325297, guid: c75c45d81f4a03d48b5c75551499458d, type: 3}

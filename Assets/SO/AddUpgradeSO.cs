@@ -4,4 +4,5 @@ using UnityEngine;
 public class AddUpgradeSO : UpgradeSO
 {
     public string Name;
+    public GameObject Prefab;
 }

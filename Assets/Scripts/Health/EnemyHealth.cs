@@ -17,7 +17,7 @@ public class EnemyHealth : Damageable
     {
         var upgradePoint = Instantiate(upgradePointObj, transform.position, Quaternion.identity).GetComponent<UpgradePoint>();
         Instantiate(dyingPrefab, transform.position, Quaternion.identity);
-        upgradePoint.InitializeUpgradePoint(Random.Range(15, 30));
+        upgradePoint.InitializeUpgradePoint(Random.Range(150, 300));
         GameManager.Instance.IncreaseEnemyKilledScoreByOne();
         SoundManager.Instance.PlaySound("Enemy", "_gust-of-wind-6");
         GetComponent<ObjectToPool>().GiveBackToPool();

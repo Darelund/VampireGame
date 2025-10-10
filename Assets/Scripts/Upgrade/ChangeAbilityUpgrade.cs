@@ -22,6 +22,18 @@ public class ChangeAbilityUpgrade : Upgrade
         playerUpgrade.AbilityUpgrades[_changeUpgradeSO.ChangeAbilityType.ToString()] = _changeUpgradeSO.playerStat;
         playerUpgrade.FireChangeAbility();
 
+        //TODO: Also here, quick solution to make this Upgrades "work" temporarily, fix later
+        if(ChangeUpgradeSO.ChangeAbilityType == ChangeAbilityType.Health)
+        {
+            playerUpgrade.currentPlayerStats.CurrentHealthLevel = _changeUpgradeSO.Level;
+        }
+        else if (ChangeUpgradeSO.ChangeAbilityType == ChangeAbilityType.Speed)
+        {
+            playerUpgrade.currentPlayerStats.CurrentSpeedLevel = _changeUpgradeSO.Level;
+        }
+        playerUpgrade.upgrades.Remove(_changeUpgradeSO);
+
+
         GameManager.Instance.SwitchState<PlayingState>();
     }
 }
