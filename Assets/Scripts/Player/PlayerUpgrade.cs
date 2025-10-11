@@ -137,7 +137,7 @@ public class PlayerUpgrade : MonoBehaviour, ISaveable<GameData>
     public void Save(GameData data)
     {
         var newestScore = data.scores[(data.scores.Count - 1)];
-        newestScore.ExperiencePoints = currentExperiencePoints;
+        newestScore.ExperiencePoints = totalExperiencePoints;
         newestScore.Level = currentLevel;
         //newestScore.Waves = currentwave
     }
