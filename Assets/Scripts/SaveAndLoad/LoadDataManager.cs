@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class LoadDataManager : MonoBehaviour
 {
@@ -51,6 +52,7 @@ public class LoadDataManager : MonoBehaviour
     public void SaveGameData()
     {
         //gameData.scores.Push(new Score());
+        if (SceneManager.GetActiveScene().name == "MainMenu") return;
 
         foreach (var element in saveableElements)
         {
