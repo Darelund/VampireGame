@@ -146,8 +146,8 @@ public class WaveData
         int current = EnemyAmount[EnemyAmount.Count - 1].CurrentlySpawned;
         int max = EnemyAmount[EnemyAmount.Count - 1].MaxAmountToSpawn;
 
-        Debug.Log("Current: " + current);
-        Debug.Log("max: " + max);
+       // Debug.Log("Current: " + current);
+       // Debug.Log("max: " + max);
         return current >= max;
     }
 

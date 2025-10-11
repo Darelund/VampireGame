@@ -14,11 +14,13 @@ public class ElectricWeapon : MeleeWeapon
         {
             if (Vector2.Distance(gameObject.transform.position, target.transform.position) < _distance)
             {
-                var playerCollider = Physics2D.OverlapCircleAll(transform.position, damageRadius);
-              if(playerCollider.ToList().Exists(g => g.gameObject.name == "Player"))
+                var colliders = Physics2D.OverlapCircleAll(transform.position, damageRadius);
+              if(colliders.ToList().Exists(g => g.gameObject.name == "Player"))
                 {
-
+                    var playerCollider = colliders.ToList().Find(g => g.gameObject.name == "Player");
                     Debug.Log("electric shock");
+                    var damageableObject = playerCollider.GetComponent<Damageable>();
+                    damageableObject.TakeDamage(damage);
                     Instantiate(AttackProjectilePrefab, transform.position, Quaternion.identity);
                     canUse = false;
                 }
