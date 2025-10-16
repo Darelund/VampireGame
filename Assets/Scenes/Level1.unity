@@ -10937,13 +10937,13 @@ MonoBehaviour:
   objectPoolManager: {fileID: 240387024}
   currentWave: 1
   WaveData:
-  - SpawnInterval: 3
+  - SpawnInterval: 1
     DifficultyMultiplier: 1
     HasStarted: 0
     EnemyAmount:
     - EnemyPool: {fileID: 1252105677}
       CurrentlySpawned: 0
-      MaxAmountToSpawn: 6
+      MaxAmountToSpawn: 2
     - EnemyPool: {fileID: 1749042161}
       CurrentlySpawned: 0
       MaxAmountToSpawn: 2
