@@ -95,7 +95,7 @@ public class EnemyController : MonoBehaviour, IAttributable
     //New Solution
 
 
-    private readonly List<Attribute> _attributes = new();
+    [SerializeField] public List<Attribute> _attributes = new();
     [SerializeField] private EnemyHealth health;
    private BaseWeapon baseWeapon;
 

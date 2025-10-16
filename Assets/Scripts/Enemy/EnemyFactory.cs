@@ -8,10 +8,13 @@ public class EnemyFactory : MonoBehaviour
     //[SerializeField] private GameObject[] enemyPrefabs;
     //[SerializeField] private GameObject[] weaponsPrefabs;
 
-    public readonly Dictionary<string, Func<EnemyController>> enemies = new();
+    public Dictionary<string, Func<EnemyController>> enemies = new();
+
+    private static int meleeCount = 0;
+    private static int rangedCount = 0;
 
 
-    public EnemyFactory()
+    public void Awake()
     {
         enemies = new()
         {
@@ -29,12 +32,16 @@ public class EnemyFactory : MonoBehaviour
             },
             ["RangedLyktgubbe"] = () =>
             {
+                rangedCount++;
+                Debug.Log($"Created another ranged one, current count: {rangedCount}");
                 Factory<EnemyController> enemyFactory = new();
                 enemyFactory.builder.SetPrefab(Resources.Load<EnemyController>("Enemies/RangedLyktgubbe").gameObject);
                 return enemyFactory.builder.WithScriptAttribute<OrbitMovement>().WithScriptAttribute<Rotatable>().WithPrefabAttribute(Resources.Load<GameObject>("Weapons/RangedWeapon").gameObject).Build();
             },
             ["MeleeLyktgubbe"] = () =>
             {
+                meleeCount++;
+                Debug.Log($"Created another melee one, current count: {meleeCount}");
                 Factory<EnemyController> enemyFactory = new();
                 enemyFactory.builder.SetPrefab(Resources.Load<EnemyController>("Enemies/MeleeLyktgubbe").gameObject);
                 return enemyFactory.builder.WithScriptAttribute<MoveTowardsMovement>().WithScriptAttribute<Rotatable>().WithPrefabAttribute(Resources.Load<GameObject>("Weapons/ElectricWeapon").gameObject).Build();

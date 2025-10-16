@@ -5,19 +5,13 @@ public class ObjectPool : MonoBehaviour //Maybe make it generic
 {
     [SerializeField] protected int poolSize;
     [SerializeField] protected bool automaticallyExpandPoolSize;
-    //[SerializeField] protected GameObject poolPrefab;
     [SerializeField] protected Transform poolParent;
 
     [SerializeField] private string enemyToSpawn; //Should I really use a string?... No... But I love strings.
     [SerializeField] private EnemyFactory enemyFactory; //TODO: Need to update it so that we can use Projectiles with it
-    //[SerializeField] private EnemyType enemyType;
 
     protected Stack<ObjectToPool> poolStack;
 
-    //protected virtual void Awake()
-    //{
-    //    InitializePool();
-    //}
     public virtual void InitializePool()
     {
         poolStack = new Stack<ObjectToPool>();
@@ -60,6 +54,8 @@ public class ObjectPool : MonoBehaviour //Maybe make it generic
     }
     public virtual void GiveBackToPool(ObjectToPool instance)
     {
+
+        if (poolStack.Contains(instance)) Debug.Log("[ObjectPool] I already exist " + instance.transform.name);
         instance.gameObject.SetActive(false);
         poolStack.Push(instance);
     }

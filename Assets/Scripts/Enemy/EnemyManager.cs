@@ -34,28 +34,23 @@ public class EnemyManager : MonoBehaviour
         for (int i = 0; i < enemies.Count; i++)
         {
             enemies[i].GetComponent<EnemyController>().UpdateEnemy();
-            if(!enemies[i].GetComponent<EnemyHealth>().IsAlive)
+            if (!enemies[i].GetComponent<EnemyHealth>().IsAlive)
             {
+
                 enemiesToRemove.Add(enemies[i]);
             }
         }
 
-        if(enemiesToRemove.Count > 0)
+        if (enemiesToRemove.Count > 0)
         {
             for (int i = enemiesToRemove.Count - 1; i >= 0; i--)
             {
-                for(int j = 0; j < waveManager.GetCurrentWave.EnemyAmount.Count; j++)
-                {
-                    if(objectPoolManager.GetPools.ToList().Find(p => p.ObjectPool == waveManager.GetCurrentWave.EnemyAmount[j].EnemyPool) is PoolData poolData)
-                    {
-                        poolData.ObjectPool.GiveBackToPool(enemiesToRemove[i].GetComponent<ObjectToPool>());
-                    }
-                }
+                enemiesToRemove[i].GetComponent<ObjectToPool>().GiveBackToPool();
                 enemies.Remove(enemiesToRemove[i]);
             }
-            enemiesToRemove.Clear(); 
+            enemiesToRemove.Clear();
         }
-      
+
     }
 
     public bool EnemiesExist()

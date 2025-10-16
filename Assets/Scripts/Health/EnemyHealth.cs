@@ -20,7 +20,7 @@ public class EnemyHealth : Damageable
         upgradePoint.InitializeUpgradePoint(Random.Range(150, 300));
         GameManager.Instance.IncreaseEnemyKilledScoreByOne();
         SoundManager.Instance.PlaySound("Enemy", "_gust-of-wind-6");
-        GetComponent<ObjectToPool>().GiveBackToPool();
+        //GetComponent<ObjectToPool>().GiveBackToPool();
     }
 
 }

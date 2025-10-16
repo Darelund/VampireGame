@@ -14,6 +14,7 @@ public abstract class Moveable : Attribute
     }
     protected virtual void Move(GameObject gameObject)
     {
+      //  Debug.Log(speed);
         gameObject.transform.position = Vector2.MoveTowards(gameObject.transform.position, target.transform.position, speed * Time.deltaTime);
     }
 }

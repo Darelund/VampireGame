@@ -35,7 +35,7 @@ public class WaveManager : MonoBehaviour
 
     }
 
-   
+
     public void UpdateWave()
     {
         if (currentWave > WaveData.Count)
@@ -43,13 +43,13 @@ public class WaveManager : MonoBehaviour
             //All waves are over
             return;
         }
-            if (startSpawn > Time.time) return;
+        if (startSpawn > Time.time) return;
         StartWave();
         if ((startSpawn + 3) > Time.time) return;
 
         if (WaveData[currentWave - 1].IsWaveOver())
         {
-            if(!enemyManager.EnemiesExist())
+            if (!enemyManager.EnemiesExist())
             {
                 //Time to go to next wave if all enemies are dead
                 FinishedCurrentWave();
@@ -59,7 +59,7 @@ public class WaveManager : MonoBehaviour
         else
             Spawner();
 
-        
+
     }
     public void StartWave()
     {
@@ -105,24 +105,30 @@ public class WaveManager : MonoBehaviour
         //int rndNumber = Random.Range(0, 2);
         //string enemyToSpawn = rndNumber == 1 ? "Enemy1" : "Lyktgubbe";
 
-      // if( WaveData[currentWave - 1].IsWaveOver()) yield break;
+        // if( WaveData[currentWave - 1].IsWaveOver()) yield break;
 
 
         //var newEnemy = objectPoolManager.GetPools.ToList().Find(p => p.Name == WaveData[currentWave - 1].EnemyAmount[WaveData[currentWave - 1].CurrentEnemyAmountToUse()].EnemyPool).ObjectPool.UsePool();
 
         var nameOfPool = WaveData[currentWave - 1].EnemyAmount[WaveData[currentWave - 1].CurrentEnemyAmountToUse()].EnemyPool;
-            var newEnemy = objectPoolManager.GetPools.ToList().Find(p => p.ObjectPool == nameOfPool).ObjectPool.UsePool();
+        var newEnemy = objectPoolManager.GetPools.ToList().Find(p => p.ObjectPool == nameOfPool).ObjectPool.UsePool();
 
-            //var newEnemy = objectPoolManager.GetPools.ToList().Find(p => p.Name == "MeleeLyktgubbePool").ObjectPool.UsePool();
-            if (newEnemy == null) yield return null;
-            newEnemy.transform.position = GetSpawnPosition();
+        //var newEnemy = objectPoolManager.GetPools.ToList().Find(p => p.Name == "MeleeLyktgubbePool").ObjectPool.UsePool();
+        if (newEnemy == null) yield return null;
+        newEnemy.transform.position = GetSpawnPosition();
 
-            //We don't create a new instance, we use an objectpool, so we need to reset the enemies stats
-            newEnemy.GetComponent<EnemyController>().ResetEnemy();
-            // var newEnemy = Instantiate(spawnObject, GetSpawnPosition(), Quaternion.identity);
-            enemyManager.GetEnemiesList.Add(newEnemy.gameObject);
-            yield return new WaitForSeconds(WaveData[currentWave - 1].SpawnInterval);
-        
+        //We don't create a new instance, we use an objectpool, so we need to reset the enemies stats
+        newEnemy.GetComponent<EnemyController>().ResetEnemy();
+        // var newEnemy = Instantiate(spawnObject, GetSpawnPosition(), Quaternion.identity);
+
+        if (enemyManager.GetEnemiesList.Contains(newEnemy.gameObject))
+        {
+            Debug.Log("Im about to add an enemy that already exists!!");
+        }
+
+        enemyManager.GetEnemiesList.Add(newEnemy.gameObject);
+        yield return new WaitForSeconds(WaveData[currentWave - 1].SpawnInterval);
+
     }
     private Vector2 GetSpawnPosition()
     {
@@ -137,7 +143,7 @@ public class WaveData
     public float SpawnInterval;
     public float DifficultyMultiplier;
     public bool HasStarted = false;
-    
+
     public List<EnemyAmount> EnemyAmount;
     //public bool WaveIsRunning;
 
@@ -146,8 +152,8 @@ public class WaveData
         int current = EnemyAmount[EnemyAmount.Count - 1].CurrentlySpawned;
         int max = EnemyAmount[EnemyAmount.Count - 1].MaxAmountToSpawn;
 
-       // Debug.Log("Current: " + current);
-       // Debug.Log("max: " + max);
+        // Debug.Log("Current: " + current);
+        // Debug.Log("max: " + max);
         return current >= max;
     }
 
@@ -164,7 +170,7 @@ public class WaveData
         //WaveIsRunning = false;
         return -1; //No pools left to use
     }
-   
+
 }
 
 [System.Serializable]

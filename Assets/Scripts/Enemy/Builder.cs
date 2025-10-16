@@ -29,6 +29,10 @@ public class Builder<T> where T : IAttributable
         {
             step?.Invoke(instance);
         }
+
+        //FJJDJSJDJSJSSJJSJSJ FUCK THIS SHIIIIIITTTTTTTTTTTTTTTTTTTTTTTTTTTTT
+        //Fucked up my code and broke it
+        buildSteps.Clear();
         return instance;
     }
 }
