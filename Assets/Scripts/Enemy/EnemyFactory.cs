@@ -32,20 +32,22 @@ public class EnemyFactory : MonoBehaviour
             },
             ["RangedLyktgubbe"] = () =>
             {
-                rangedCount++;
-                Debug.Log($"Created another ranged one, current count: {rangedCount}");
                 Factory<EnemyController> enemyFactory = new();
                 enemyFactory.builder.SetPrefab(Resources.Load<EnemyController>("Enemies/RangedLyktgubbe").gameObject);
                 return enemyFactory.builder.WithScriptAttribute<OrbitMovement>().WithScriptAttribute<Rotatable>().WithPrefabAttribute(Resources.Load<GameObject>("Weapons/RangedWeapon").gameObject).Build();
             },
             ["MeleeLyktgubbe"] = () =>
             {
-                meleeCount++;
-                Debug.Log($"Created another melee one, current count: {meleeCount}");
                 Factory<EnemyController> enemyFactory = new();
                 enemyFactory.builder.SetPrefab(Resources.Load<EnemyController>("Enemies/MeleeLyktgubbe").gameObject);
                 return enemyFactory.builder.WithScriptAttribute<MoveTowardsMovement>().WithScriptAttribute<Rotatable>().WithPrefabAttribute(Resources.Load<GameObject>("Weapons/ElectricWeapon").gameObject).Build();
             },
+            ["MeleeMyling"] = () =>
+            {
+                Factory<EnemyController> enemyFactory = new();
+                enemyFactory.builder.SetPrefab(Resources.Load<EnemyController>("Enemies/MeleeMyling").gameObject);
+                return enemyFactory.builder.WithScriptAttribute<CrawlingMovement>().WithScriptAttribute<Rotatable>().WithPrefabAttribute(Resources.Load<GameObject>("Weapons/ElectricWeapon").gameObject).Build();
+            }
         };
     }
 }

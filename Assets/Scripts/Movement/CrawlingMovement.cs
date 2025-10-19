@@ -1,16 +1,16 @@
 using UnityEngine;
 
-public class CrawlingMovement : MonoBehaviour
+public class CrawlingMovement : Moveable
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    private float crawlTimer = 0.2f;
+    private float timeSinceLastCrawl;
+    protected override void Move(GameObject gameObject)
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        //timeSinceLastCrawl += Time.deltaTime;
+        //if(timeSinceLastCrawl > crawlTimer)
+        //{
+        //    timeSinceLastCrawl = 0;
+        //}
+            gameObject.transform.position = Vector2.MoveTowards(gameObject.transform.position, target.transform.position, (speed * 0.6f) * Time.deltaTime);
     }
 }
